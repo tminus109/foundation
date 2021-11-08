@@ -10,4 +10,3 @@ Examples:
 input 1	input 2	output
 "dog"	"god"	true
 "green"	"fox"	false
-    
