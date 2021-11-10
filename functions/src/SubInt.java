@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class SubInt {
     public static ArrayList<Integer> findMatchingIndexes(int number, int[] numbers) {
-        ArrayList<Integer> indexes = new ArrayList<Integer>();
+        ArrayList<Integer> indexes = new ArrayList<>();
         String s = "";
         for (int i = 0; i < numbers.length; i++) {
             if (numbers[i] > 9) {
