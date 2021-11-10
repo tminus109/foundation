@@ -13,9 +13,9 @@ public class PalindromeSearcher {
         return true;
     }
 
-    public static ArrayList searchPalindrome(String input) {
+    public static ArrayList<String> searchPalindrome(String input) {
         String palindrome = "";
-        ArrayList palindromes = new ArrayList();
+        ArrayList<String> palindromes = new ArrayList<>();
         int index = 0;
         for (int i = 0; i < input.length(); i++) {
             for (int j = index; j < input.length(); j++) {
