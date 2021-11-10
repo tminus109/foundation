@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class PalindromeSearcher {
-    public static boolean isPalindrom(String input) {
+    public static boolean isPalindrome(String input) {
         int index = input.length() - 1;
         for (int i = 0; i < input.length() / 2; i++) {
             if (input.charAt(i) != input.charAt(index)) {
@@ -20,7 +20,7 @@ public class PalindromeSearcher {
         for (int i = 0; i < input.length(); i++) {
             for (int j = index; j < input.length(); j++) {
                 palindrome += input.charAt(j);
-                if (palindrome.length() >= 3 && isPalindrom(palindrome)) {
+                if (palindrome.length() >= 3 && isPalindrome(palindrome)) {
                     palindromes.add(palindrome);
                 }
             }
@@ -31,8 +31,8 @@ public class PalindromeSearcher {
     }
 
     public static void main(String[] args) {
-        System.out.println(isPalindrom("panam"));
-        System.out.println(isPalindrom("pannap"));
+        System.out.println(isPalindrome("panam"));
+        System.out.println(isPalindrome("pannap"));
         System.out.println(searchPalindrome("dog goat dad duck doodle never"));
         System.out.println(searchPalindrome("apple"));
         System.out.println(searchPalindrome("racecar"));
