@@ -1,1 +1,1 @@
-Green Fox Academy foundation exercises (Java)
+Java exercises.
