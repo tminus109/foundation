@@ -65,3 +65,5 @@ Sample Input:
 0 0 1 2 4 0
 
 Sample Output: 19
+
+https://www.hackerrank.com/challenges/2d-array/problem
