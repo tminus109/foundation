@@ -19,8 +19,9 @@ public class MakingAnagrams {
 
         List<Integer> values = new ArrayList<>(charCount.values());
         int totalCharsDeleted = 0;
-        for (Integer v : values) {
-            totalCharsDeleted += Math.abs(v);
+
+        for (Integer value : values) {
+            totalCharsDeleted += Math.abs(value);
         }
 
         return totalCharsDeleted;
