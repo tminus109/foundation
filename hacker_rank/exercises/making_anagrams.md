@@ -45,3 +45,5 @@ Delete the following characters from the strings to make them anagrams:
 Remove d and e from cde to get c.
 Remove a and b from abc to get c.
 It takes 4 deletions to make both strings anagrams.
+
+https://www.hackerrank.com/challenges/ctci-making-anagrams/problem

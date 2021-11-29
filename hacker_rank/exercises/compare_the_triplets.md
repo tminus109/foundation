@@ -50,3 +50,5 @@ Sample Input 1
 
 Sample Output 1
 2 1
+
+https://www.hackerrank.com/challenges/compare-the-triplets/problem

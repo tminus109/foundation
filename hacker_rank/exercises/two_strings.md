@@ -41,3 +41,5 @@ world
 Sample Output:
 YES
 NO
+
+https://www.hackerrank.com/challenges/two-strings/problem

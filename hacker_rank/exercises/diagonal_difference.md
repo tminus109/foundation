@@ -37,3 +37,5 @@ Sample Input:
 
 Sample Output
 15
+
+https://www.hackerrank.com/challenges/diagonal-difference/problem

@@ -58,3 +58,5 @@ Sample Input 2:
 
 Sample Output 2:
 1
+
+https://www.hackerrank.com/challenges/the-birthday-bar/problem
