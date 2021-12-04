@@ -11,6 +11,9 @@ public class ValidParenthesis {
                 count++;
             } else if (s.charAt(i) == ')') {
                 count--;
+                if (count < 0) {
+                    return false;
+                }
             }
         }
 
@@ -23,11 +26,13 @@ public class ValidParenthesis {
         String s3 = "(";
         String s4 = "(())((()())())";
         String s5 = "(()()(()())()";
+        String s6 = "()))((";
 
         System.out.println(isParenthesisValid(s1));
         System.out.println(isParenthesisValid(s2));
         System.out.println(isParenthesisValid(s3));
         System.out.println(isParenthesisValid(s4));
         System.out.println(isParenthesisValid(s5));
+        System.out.println(isParenthesisValid(s6));
     }
 }
