@@ -4,6 +4,13 @@ import java.util.List;
 public class CharacterWithLongestConsecutiveRepetition {
     public static List<Object> findCharacter(String s) {
         List<Object> output = new ArrayList<>();
+
+        if (s.length() == 0) {
+            output.add("\"\"");
+            output.add(0);
+            return output;
+        }
+
         char c = s.charAt(0);
         int l = 1;
 
@@ -30,6 +37,9 @@ public class CharacterWithLongestConsecutiveRepetition {
 
     public static void main(String[] args) {
         String input1 = "abbcccdddeeeffffafffff";
+        String input2 = "";
+
         System.out.println(findCharacter(input1));
+        System.out.println(findCharacter(input2));
     }
 }
