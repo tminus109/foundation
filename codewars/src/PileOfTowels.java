@@ -5,7 +5,6 @@ import java.util.List;
 
 public class PileOfTowels {
     public static List<String> sortThePile(List<String> towels, List<Integer> t) {
-
         for (Integer integer : t) {
             List<String> usedTowels = new ArrayList<>();
             int length = towels.size() - integer;
@@ -16,7 +15,6 @@ public class PileOfTowels {
             usedTowels.sort(Collections.reverseOrder());
             towels.addAll(usedTowels);
         }
-
         return towels;
     }
 
