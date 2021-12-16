@@ -5,17 +5,17 @@ public class MiniMaxSum {
         int index = 0;
 
         for (int i = 0; i < input.length; i++) {
-            long temporary = 0;
+            long temp = 0;
             for (int j = 0; j < input.length; j++) {
                 if (j != index) {
-                    temporary += input[j];
+                    temp += input[j];
                 }
             }
-            if (temporary < minimumSum) {
-                minimumSum = temporary;
+            if (temp < minimumSum) {
+                minimumSum = temp;
             }
-            if (temporary > maximumSum) {
-                maximumSum = temporary;
+            if (temp > maximumSum) {
+                maximumSum = temp;
             }
             index++;
         }

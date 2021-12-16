@@ -4,11 +4,11 @@ import java.util.Arrays;
 public class Matchmaking {
     public static ArrayList<String> match(ArrayList<String> girls, ArrayList<String> boys) {
         ArrayList<String> girlsAndBoys = new ArrayList<>();
-        int iterator = girls.size();
+        int length = girls.size();
         if (girls.size() < boys.size()) {
-            iterator = boys.size();
+            length = boys.size();
         }
-        for (int i = 0; i < iterator; i++) {
+        for (int i = 0; i < length; i++) {
             String match = "";
             if (i < girls.size() && i < boys.size()) {
                 match = girls.get(i) + "-" + boys.get(i);

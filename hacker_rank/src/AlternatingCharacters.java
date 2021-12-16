@@ -1,21 +1,21 @@
 public class AlternatingCharacters {
     public static int alternatingCharacters(String s) {
-        int minimumNumberOfDeletions = 0;
-        StringBuilder noMatchingAdjacentCharacters = new StringBuilder(s);
+        int deletions = 0;
+        StringBuilder chars = new StringBuilder(s);
         int index = 0;
 
-        for (int i = 0; i < noMatchingAdjacentCharacters.length() - 1; i++) {
-            if (noMatchingAdjacentCharacters.charAt(index) ==
-                    noMatchingAdjacentCharacters.charAt(index + 1)) {
-                noMatchingAdjacentCharacters.deleteCharAt(index);
-                minimumNumberOfDeletions++;
+        for (int i = 0; i < chars.length() - 1; i++) {
+            if (chars.charAt(index) ==
+                    chars.charAt(index + 1)) {
+                chars.deleteCharAt(index);
+                deletions++;
                 i--;
             } else {
                 index++;
             }
         }
 
-        return minimumNumberOfDeletions;
+        return deletions;
     }
 
     public static void main(String[] args) {

@@ -7,7 +7,7 @@ public class SumAll {
 //      method #1:
         System.out.println(Arrays.stream(numbers).sum());
 
-//      method #1:
+//      method #2:
         int sum = 0;
         for (int i = 0; i < numbers.length; i++) {
             sum += numbers[i];

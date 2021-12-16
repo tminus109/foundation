@@ -8,6 +8,7 @@ public class TwoStrings {
 //            if (s2.contains(Character.toString(s1.charAt(i)))) {
 //                return "YES";
 //            }
+
         }
         return "NO";
     }

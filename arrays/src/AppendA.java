@@ -6,7 +6,6 @@ public class AppendA {
                 "iguan", "impal", "pum", "tarantul", "pirahn"};
         for (int i = 0; i < animals.length; i++) {
             animals[i] += "a";
-            System.out.println(animals[i]);
         }
         System.out.println(Arrays.toString(animals));
     }
