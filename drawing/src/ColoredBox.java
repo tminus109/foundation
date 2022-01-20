@@ -5,14 +5,18 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class ColoredBox {
     public static void drawImage(Graphics graphics) {
+        int size = 300;
+        int x = WIDTH / 4;
+        int y = HEIGHT / 4;
+
         graphics.setColor(Color.BLUE);
-        graphics.drawLine(150, 150, 450, 150);
+        graphics.drawLine(x, y, x + size, y);
         graphics.setColor(Color.RED);
-        graphics.drawLine(450, 150, 450, 450);
+        graphics.drawLine(x + size, y, x + size, y + size);
         graphics.setColor(Color.GREEN);
-        graphics.drawLine(450, 450, 150, 450);
+        graphics.drawLine(x + size, y + size, x, y + size);
         graphics.setColor(Color.MAGENTA);
-        graphics.drawLine(150, 450, 150, 150);
+        graphics.drawLine(x, y + size, x, y);
     }
 
     static int WIDTH = 600;
