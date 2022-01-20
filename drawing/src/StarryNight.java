@@ -15,11 +15,11 @@ public class StarryNight {
             int x = (int) (Math.random() * WIDTH);
             int y = (int) (Math.random() * HEIGHT);
 
-            drawStars(graphics, size, r, g, b, x, y);
+            drawStar(graphics, size, r, g, b, x, y);
         }
     }
 
-    public static void drawStars(Graphics graphics,
+    public static void drawStar(Graphics graphics,
                                  int size, int r, int g, int b, int x, int y) {
         graphics.setColor(new Color(r, g, b));
         graphics.fillRect(x, y, size, size);
