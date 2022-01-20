@@ -6,13 +6,16 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class CenteredSquare {
     public static void drawImage(Graphics graphics) {
         int size0 = 100;
-        graphics.drawRect((WIDTH / 2 - size0 / 2), (HEIGHT / 2 - size0 / 2), size0, size0);
-
         int size1 = 200;
-        graphics.drawRect((WIDTH / 2 - size1 / 2), (HEIGHT / 2 - size1 / 2), size1, size1);
-
         int size2 = 300;
-        graphics.drawRect((WIDTH / 2 - size2 / 2), (HEIGHT / 2 - size2 / 2), size2, size2);
+
+        drawSquare(graphics, size0);
+        drawSquare(graphics, size1);
+        drawSquare(graphics, size2);
+    }
+
+    public static void drawSquare(Graphics graphics, int size) {
+        graphics.drawRect((WIDTH / 2 - size / 2), (HEIGHT / 2 - size / 2), size, size);
     }
 
     static int WIDTH = 600;
