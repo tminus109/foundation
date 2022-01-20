@@ -3,8 +3,7 @@ import java.awt.*;
 
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class CenterBoxFunction {
-
+public class CenteredSquare {
     public static void drawImage(Graphics graphics) {
         int size0 = 100;
         graphics.drawRect((WIDTH / 2 - size0 / 2), (HEIGHT / 2 - size0 / 2), size0, size0);
