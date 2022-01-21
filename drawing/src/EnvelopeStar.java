@@ -6,9 +6,9 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class EnvelopeStar {
     public static void drawImage(Graphics graphics) {
         int increment = 20;
-        int iterator = WIDTH / 2 / increment;
+        int lineCount = WIDTH / 2 / increment;
 
-        for (int i = 0; i < iterator; i++) {
+        for (int i = 0; i < lineCount; i++) {
             drawLines(graphics, i * increment, i * increment);
         }
     }

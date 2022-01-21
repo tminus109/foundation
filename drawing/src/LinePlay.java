@@ -5,10 +5,10 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class LinePlay {
     public static void drawImage(Graphics graphics) {
-        int iterator = 16;
-        int increment = WIDTH / iterator;
+        int lineCount = 16;
+        int increment = WIDTH / lineCount;
 
-        for (int i = 1; i < iterator; i++) {
+        for (int i = 1; i < lineCount; i++) {
             drawLines(graphics, i * increment, i * increment);
         }
     }

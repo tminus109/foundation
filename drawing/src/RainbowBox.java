@@ -12,11 +12,11 @@ public class RainbowBox {
                 Color.red, Color.orange, Color.yellow, Color.green, Color.blue,
                 new Color(75, 0, 130), new Color(238, 130, 238)));
         int size = WIDTH;
-        int increment = WIDTH / colors.size();
+        int decrement = WIDTH / colors.size();
 
         for (Color color : colors) {
             drawSquare(graphics, size, color);
-            size = size - increment;
+            size = size - decrement;
         }
     }
 

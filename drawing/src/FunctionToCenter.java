@@ -6,9 +6,9 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class FunctionToCenter {
     public static void drawImage(Graphics graphics) {
         int increment = 20;
-        int iterator = WIDTH / increment;
+        int lineCount = WIDTH / increment;
 
-        for (int i = 0; i < iterator; i++) {
+        for (int i = 0; i < lineCount; i++) {
             drawLines(graphics, i * increment, i * increment, increment);
         }
     }
