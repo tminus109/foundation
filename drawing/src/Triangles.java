@@ -6,8 +6,8 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class Triangles {
     public static void drawImage(Graphics graphics) {
         double size = 21;
-        double length = WIDTH / size;
-        double height = length * (Math.cbrt(3) / 2);
+        double sideLength = WIDTH / size;
+        double height = sideLength * (Math.sqrt(3) / 2);
         double x0 = 0;
         double x1 = x0;
         double y1 = (HEIGHT - height * size) / 2 + height * size;
@@ -16,19 +16,19 @@ public class Triangles {
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < triangles; j++) {
-                int[] xPoints = {(int) x1, (int) (x1 + length), (int) (x1 + length / 2)};
+                int[] xPoints = {(int) x1, (int) (x1 + sideLength), (int) (x1 + sideLength / 2)};
                 int[] yPoints = {(int) y1, (int) y1, (int) (y1 - height)};
-                drawTriangle(graphics, xPoints, yPoints, n);
-                x1 += length;
+                drawPolygon(graphics, xPoints, yPoints, n);
+                x1 += sideLength;
             }
-            x0 += length / 2;
+            x0 += sideLength / 2;
             x1 = x0;
             y1 -= height;
             triangles--;
         }
     }
 
-    public static void drawTriangle(Graphics graphics, int[] xPoints, int[] yPoints, int n) {
+    public static void drawPolygon(Graphics graphics, int[] xPoints, int[] yPoints, int n) {
         graphics.drawPolygon(xPoints, yPoints, n);
     }
 
