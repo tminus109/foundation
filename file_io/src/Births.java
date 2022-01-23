@@ -59,7 +59,6 @@ public class Births {
                 yearsWithMostBirths.add(entry.getKey());
             }
         }
-
         return yearsWithMostBirths;
     }
 }
