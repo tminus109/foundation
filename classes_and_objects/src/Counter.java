@@ -3,13 +3,13 @@ public class Counter {
     int counter;
 
     Counter() {
-        this.counter = 0;
         this.initialCounter = 0;
+        this.counter = 0;
     }
 
     Counter(int counter) {
-        this.counter = counter;
         this.initialCounter = counter;
+        this.counter = counter;
     }
 
     public void add(int number) {
