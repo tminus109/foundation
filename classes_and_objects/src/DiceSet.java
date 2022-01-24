@@ -28,4 +28,13 @@ public class DiceSet {
     public void reRollItem(int k) {
         dice.set(k, (int) (Math.random() * 6) + 1);
     }
+
+    public static void main(String[] args) {
+        DiceSet diceSet = new DiceSet();
+        diceSet.rollSet();
+        System.out.println(diceSet.getCurrentSet());
+        diceSet.reRollItem(0);
+        System.out.println(diceSet.getCurrentSet());
+        System.out.println("etc...");
+    }
 }
