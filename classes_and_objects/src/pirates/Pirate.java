@@ -1,7 +1,10 @@
+package pirates;
+
 import java.util.Random;
 
 public class Pirate {
-    int drunkennessLevel, strength;
+    int drunkennessLevel;
+    int strength;
     boolean alive;
 
     Pirate() {
@@ -23,8 +26,9 @@ public class Pirate {
         if (this.alive) {
             if (this.drunkennessLevel < 4) {
                 System.out.println("Pour me anudder!");
+                this.drinkSomeRum();
             } else {
-                System.out.println("Arghh, I'ma Pirate. How d'ya d'ink its goin?");
+                System.out.println("Arghh, I'ma pirates.Pirate. How d'ya d'ink its goin?");
                 this.passOut();
             }
         } else {
@@ -73,7 +77,7 @@ public class Pirate {
         if (this.alive) {
             this.drunkennessLevel = 0;
             this.strength = 4;
-            System.out.println("Zzzzzz...");
+            System.out.println("Zzz...");
         } else {
             System.out.println("He is dead");
         }

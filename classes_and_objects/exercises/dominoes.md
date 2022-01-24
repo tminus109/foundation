@@ -1,4 +1,4 @@
-You have a list of Dominoes.
+You have a list of dominoes.Dominoes.
 Order them into one snake where the adjacent dominoes have the same numbers
 on their adjacent sides.
 

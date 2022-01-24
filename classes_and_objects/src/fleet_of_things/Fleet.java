@@ -1,3 +1,5 @@
+package fleet_of_things;
+
 import java.util.ArrayList;
 
 public class Fleet {

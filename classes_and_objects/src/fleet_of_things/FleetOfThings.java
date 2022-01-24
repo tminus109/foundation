@@ -1,3 +1,5 @@
+package fleet_of_things;
+
 public class FleetOfThings {
     public static void main(String[] args) {
         Fleet fleet = new Fleet();

@@ -1,3 +1,5 @@
+package fleet_of_things;
+
 public class Thing {
     private final String name;
     private boolean completed;

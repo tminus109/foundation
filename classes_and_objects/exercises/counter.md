@@ -1,4 +1,4 @@
-Create Counter class which has a counter (integer) field - 
+Create counter.Counter class which has a counter (integer) field - 
 at creation it should have a default value 0.
 
 There are two ways to create the class:
@@ -10,7 +10,7 @@ We can just increase the counter's value by one: add() (no parameters).
 We can get() the current counter value.
 We can reset() the counter to the initial value, set during the construction of the class.
 
-Download CounterTest.java and place it next to your solution.
+Download counter.CounterTest.java and place it next to your solution.
 Check if everything works fine with the proper tests.
 Other hints for running:
 If something gets red (OSX): press ⌥⏎ and add JUnit5 to classpath (5 aka JUnit FIVE not 4 or 3).

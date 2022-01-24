@@ -1,4 +1,4 @@
-Create a BlogPost class that has:
+Create a blog.BlogPost class that has:
 
 - an authorName,
 - a title,

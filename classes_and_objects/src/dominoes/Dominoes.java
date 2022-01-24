@@ -1,3 +1,5 @@
+package dominoes;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,7 +19,7 @@ public class Dominoes {
         dominoes.add(new Domino(6, 7));
         dominoes.add(new Domino(2, 4));
         dominoes.add(new Domino(7, 1));
-//        dominoes.add(new Domino(1, 1));
+//        dominoes.add(new dominoes.Domino(1, 1));
         return dominoes;
     }
 
@@ -33,7 +35,7 @@ public class Dominoes {
                 }
                 dominoesInOrder.add(dominoes.get(i));
             } catch (Exception e) {
-                System.out.println("The rest of the Dominoes can't be put in order");
+                System.out.println("The rest of the dominoes.Dominoes can't be put in order");
             }
         }
         dominoesInOrder.add(dominoes.get(nextDomino - 1));

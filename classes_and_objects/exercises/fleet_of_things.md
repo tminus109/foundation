@@ -1,6 +1,6 @@
-You have the `Thing` class.
-You have the `Fleet` class.
-You have the `FleetOfThings` class with a `main()` method.
+You have the `fleet_of_things.Thing` class.
+You have the `fleet_of_things.Fleet` class.
+You have the `fleet_of_things.FleetOfThings` class with a `main()` method.
 Download those, use those.
 Create a fleet in the main() method.
     

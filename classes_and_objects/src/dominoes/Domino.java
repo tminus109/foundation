@@ -1,3 +1,5 @@
+package dominoes;
+
 public class Domino {
     private final int left;
     private final int right;

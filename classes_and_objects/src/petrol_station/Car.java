@@ -1,3 +1,5 @@
+package petrol_station;
+
 public class Car {
     int capacity;
     int gasAmount;

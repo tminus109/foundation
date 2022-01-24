@@ -1,3 +1,5 @@
+package farm;
+
 public class Animal {
     int hunger, thirst;
 

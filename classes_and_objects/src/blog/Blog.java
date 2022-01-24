@@ -1,3 +1,5 @@
+package blog;
+
 import java.util.List;
 
 public class Blog {
