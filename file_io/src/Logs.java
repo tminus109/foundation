@@ -35,18 +35,18 @@ public class Logs {
     }
 
     public static String getGetPostRatio(List<String> file) {
-        int getRequestsCount = 0;
-        int postRequestsCount = 0;
+        int getRequestCount = 0;
+        int postRequestCount = 0;
         for (String nextLine : file) {
             String[] splitLine = nextLine.split("   ");
             String request = splitLine[2];
             if (request.equals("GET /")) {
-                getRequestsCount++;
+                getRequestCount++;
             } else if (request.equals("POST /")) {
-                postRequestsCount++;
+                postRequestCount++;
             }
         }
         return "The GET : POST request ratio is "
-                + getRequestsCount + " : " + postRequestsCount + ".";
+                + getRequestCount + " : " + postRequestCount + ".";
     }
 }
