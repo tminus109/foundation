@@ -16,7 +16,7 @@ public class Captain extends Pirate {
         if (this.alive) {
             this.alive = false;
         } else {
-            System.out.println("He's dead already");
+            System.out.println("He's dead already.");
         }
         this.renameCaptain("a dead man");
     }

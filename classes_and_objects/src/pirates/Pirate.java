@@ -18,7 +18,7 @@ public class Pirate {
             this.drunkennessLevel++;
             this.strength--;
         } else {
-            System.out.println("He is dead");
+            System.out.println("He is dead.");
         }
     }
 
@@ -28,11 +28,11 @@ public class Pirate {
                 System.out.println("Pour me anudder!");
                 this.drinkSomeRum();
             } else {
-                System.out.println("Arghh, I'ma pirates.Pirate. How d'ya d'ink its goin?");
+                System.out.println("Arghh, I'ma Pirate. How d'ya d'ink its goin?");
                 this.passOut();
             }
         } else {
-            System.out.println("He is dead");
+            System.out.println("He is dead.");
         }
     }
 
@@ -41,27 +41,32 @@ public class Pirate {
             if (this.strength > pirate.strength) {
                 this.strength -= pirate.strength;
                 pirate.die();
+                System.out.println("You won, the other pirate died.");
             } else if (pirate.strength > this.strength) {
                 pirate.strength -= this.strength;
                 this.die();
+                System.out.println("You died.");
             } else {
                 Random random = new Random();
                 int whoDies = random.nextInt(3);
                 if (whoDies == 0) {
+                    System.out.println("Go to sleep, both of you!");
                     this.passOut();
                     pirate.passOut();
                 } else if (whoDies == 1) {
                     this.die();
+                    System.out.println("You died.");
                 } else {
                     pirate.die();
+                    System.out.println("You won, the other pirate died.");
                 }
             }
         } else if (!this.alive && pirate.alive) {
-            System.out.println("This pirate is dead");
+            System.out.println("This pirate is dead.");
         } else if (this.alive) {
-            System.out.println("The pirate you want to fight is dead");
+            System.out.println("The pirate you want to fight is dead.");
         } else {
-            System.out.println("They are both dead");
+            System.out.println("They are both dead.");
         }
     }
 
@@ -69,7 +74,7 @@ public class Pirate {
         if (this.alive) {
             this.alive = false;
         } else {
-            System.out.println("He's dead already");
+            System.out.println("He's dead already.");
         }
     }
 
@@ -79,7 +84,7 @@ public class Pirate {
             this.strength = 4;
             System.out.println("Zzz...");
         } else {
-            System.out.println("He is dead");
+            System.out.println("He is dead.");
         }
     }
 }
