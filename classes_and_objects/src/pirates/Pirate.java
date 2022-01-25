@@ -36,6 +36,16 @@ public class Pirate {
         }
     }
 
+    void passOut() {
+        if (alive) {
+            System.out.println("Zzz...");
+            intoxicationLevel = 0;
+            strength = 4;
+        } else {
+            System.out.println("He is dead.");
+        }
+    }
+
     void brawl(Pirate otherPirate) {
         if (alive && otherPirate.alive) {
             if (strength > otherPirate.strength) {
@@ -75,16 +85,6 @@ public class Pirate {
             alive = false;
         } else {
             System.out.println("He's dead already.");
-        }
-    }
-
-    void passOut() {
-        if (alive) {
-            System.out.println("Zzz...");
-            intoxicationLevel = 0;
-            strength = 4;
-        } else {
-            System.out.println("He is dead.");
         }
     }
 }
