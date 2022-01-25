@@ -3,86 +3,86 @@ package pirates;
 import java.util.Random;
 
 public class Pirate {
-    int drunkennessLevel;
+    int intoxicationLevel;
     int strength;
     boolean alive;
 
     Pirate() {
-        this.drunkennessLevel = 0;
+        this.intoxicationLevel = 0;
         this.strength = 4;
         this.alive = true;
     }
 
     void drinkSomeRum() {
-        if (this.alive) {
-            this.drunkennessLevel++;
-            this.strength--;
+        if (alive) {
+            intoxicationLevel++;
+            strength--;
         } else {
             System.out.println("He is dead.");
         }
     }
 
     void howsItGoingMate() {
-        if (this.alive) {
-            if (this.drunkennessLevel < 4) {
+        if (alive) {
+            if (intoxicationLevel < 4) {
                 System.out.println("Pour me anudder!");
-                this.drinkSomeRum();
+                drinkSomeRum();
             } else {
                 System.out.println("Arghh, I'ma Pirate. How d'ya d'ink its goin?");
-                this.passOut();
+                passOut();
             }
         } else {
             System.out.println("He is dead.");
         }
     }
 
-    void brawl(Pirate pirate) {
-        if (this.alive && pirate.alive) {
-            if (this.strength > pirate.strength) {
-                this.strength -= pirate.strength;
-                pirate.die();
+    void brawl(Pirate otherPirate) {
+        if (alive && otherPirate.alive) {
+            if (strength > otherPirate.strength) {
+                strength -= otherPirate.strength;
+                otherPirate.die();
                 System.out.println("You won, the other pirate died.");
-            } else if (pirate.strength > this.strength) {
-                pirate.strength -= this.strength;
-                this.die();
+            } else if (otherPirate.strength > strength) {
+                otherPirate.strength -= strength;
+                die();
                 System.out.println("You died.");
             } else {
                 Random random = new Random();
                 int whoDies = random.nextInt(3);
                 if (whoDies == 0) {
                     System.out.println("Go to sleep, both of you!");
-                    this.passOut();
-                    pirate.passOut();
+                    passOut();
+                    otherPirate.passOut();
                 } else if (whoDies == 1) {
-                    this.die();
+                    die();
                     System.out.println("You died.");
                 } else {
-                    pirate.die();
+                    otherPirate.die();
                     System.out.println("You won, the other pirate died.");
                 }
             }
-        } else if (!this.alive && pirate.alive) {
+        } else if (!alive && otherPirate.alive) {
             System.out.println("This pirate is dead.");
-        } else if (this.alive) {
+        } else if (alive) {
             System.out.println("The pirate you want to fight is dead.");
         } else {
-            System.out.println("They are both dead.");
+            System.out.println("Both pirates are dead.");
         }
     }
 
     void die() {
-        if (this.alive) {
-            this.alive = false;
+        if (alive) {
+            alive = false;
         } else {
             System.out.println("He's dead already.");
         }
     }
 
     void passOut() {
-        if (this.alive) {
-            this.drunkennessLevel = 0;
-            this.strength = 4;
+        if (alive) {
             System.out.println("Zzz...");
+            intoxicationLevel = 0;
+            strength = 4;
         } else {
             System.out.println("He is dead.");
         }

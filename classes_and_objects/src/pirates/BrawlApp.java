@@ -7,12 +7,12 @@ public class BrawlApp {
         Pirate pirate2 = new Pirate();
 
         System.out.println(pirate.alive);
-        System.out.println(pirate.drunkennessLevel);
+        System.out.println(pirate.intoxicationLevel);
         System.out.println(pirate.strength);
         System.out.println();
 
         pirate.drinkSomeRum();
-        System.out.println(pirate.drunkennessLevel);
+        System.out.println(pirate.intoxicationLevel);
         System.out.println(pirate.strength);
         System.out.println();
 
@@ -20,7 +20,7 @@ public class BrawlApp {
         pirate.howsItGoingMate();
         pirate.howsItGoingMate();
         pirate.howsItGoingMate();
-        System.out.println(pirate.drunkennessLevel);
+        System.out.println(pirate.intoxicationLevel);
         System.out.println(pirate.strength);
         System.out.println();
 

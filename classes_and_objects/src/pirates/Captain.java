@@ -13,11 +13,11 @@ public class Captain extends Pirate {
 
     @Override
     void die() {
-        if (this.alive) {
-            this.alive = false;
+        if (alive) {
+            alive = false;
         } else {
             System.out.println("He's dead already.");
         }
-        this.renameCaptain("a dead man");
+        renameCaptain("a dead man");
     }
 }
