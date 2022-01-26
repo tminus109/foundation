@@ -1,6 +1,6 @@
 package the_garden;
 
-public abstract class Plant {
+public class Plant {
     String color;
     String type;
     double waterLevel;
