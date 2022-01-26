@@ -5,7 +5,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class Hexagon {
     public static void drawImage(Graphics graphics) {
-        double length = (WIDTH / 2) - (Math.random() * 50);
+        double length = (WIDTH / 2) * 0.95;
         double radius = (Math.sqrt(3) / 2) * length;   // Same es equilateral triangle's height = (√3 / 2) * length
         double x = (WIDTH - length) / 2;
         double y = (HEIGHT - (radius * 2)) / 2;
