@@ -12,7 +12,7 @@ public class Glass extends Block {
         this.placeAfter = Arrays.asList("mud", "brick", "ice", "air", "glowstone", "door");
     }
 
-    public Glass() {
+    Glass() {
         this.type = "glass";
         this.color = new Color(0, 0, 0, 0);
         this.lightTransmission = 99;
