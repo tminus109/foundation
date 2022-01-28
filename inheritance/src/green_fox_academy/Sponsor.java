@@ -1,4 +1,4 @@
-package before;
+package green_fox_academy;
 
 public class Sponsor extends Person {
     String company;

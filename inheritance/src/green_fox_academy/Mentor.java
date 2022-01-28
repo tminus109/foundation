@@ -1,4 +1,4 @@
-package before;
+package green_fox_academy;
 
 public class Mentor extends Person {
     String level;
