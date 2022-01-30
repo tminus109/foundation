@@ -9,15 +9,15 @@ public class Animal {
     }
 
     public void eat() {
-        this.hunger++;
+        this.hunger--;
     }
 
     public void drink() {
-        this.thirst++;
+        this.thirst--;
     }
 
     public void play() {
-        this.hunger--;
-        this.thirst--;
+        this.hunger++;
+        this.thirst++;
     }
 }
