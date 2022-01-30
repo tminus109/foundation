@@ -3,7 +3,7 @@ package flyable;
 import zoo.Animal;
 
 public class Bird extends Animal implements Flyable {
-    Bird(String name) {
+    public Bird(String name) {
         super(name);
     }
 

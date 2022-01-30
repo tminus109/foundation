@@ -1,7 +1,7 @@
 package zoo;
 
 public class Mammal extends Animal {
-    Mammal(String name) {
+    public Mammal(String name) {
         super(name);
     }
 

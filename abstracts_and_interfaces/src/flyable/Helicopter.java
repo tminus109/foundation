@@ -1,7 +1,7 @@
 package flyable;
 
 public class Helicopter extends Vehicle implements Flyable {
-    Helicopter(String type, String color, int weight) {
+    public Helicopter(String type, String color, int weight) {
         super(type, color, weight);
     }
 
