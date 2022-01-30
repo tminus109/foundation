@@ -8,13 +8,13 @@ public abstract class Animal {
     boolean predator;
     boolean canFly;
 
-    Animal(String name) {
+    public Animal(String name) {
         this.name = name;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
-    abstract String breed();
+    public abstract String breed();
 }

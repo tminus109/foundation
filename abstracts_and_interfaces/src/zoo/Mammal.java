@@ -6,7 +6,7 @@ public class Mammal extends Animal {
     }
 
     @Override
-    String breed() {
+    public String breed() {
         return "giving birth to live young";
     }
 }
