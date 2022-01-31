@@ -1,8 +1,10 @@
+package final_exam;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class FinalExam {
-    public static List<Integer> secondLargestPerimeter(int[][] triangles) {
+public class SecondLargestPerimeter {
+    public static List<Integer> findSecondLargestPerimeter(int[][] triangles) {
         List<Integer> secondLargestPerimeters = new ArrayList<>();
 
         if (triangles.length < 2) {
@@ -53,11 +55,11 @@ public class FinalExam {
         int[][] triangles4 = {{2, 3, 4}, {4, 5, 6,}};
         int[][] triangles5 = {};
 
-        System.out.println(secondLargestPerimeter(triangles0));
-        System.out.println(secondLargestPerimeter(triangles1));
-        System.out.println(secondLargestPerimeter(triangles2));
-        System.out.println(secondLargestPerimeter(triangles3));
-        System.out.println(secondLargestPerimeter(triangles4));
-        System.out.println(secondLargestPerimeter(triangles5));
+        System.out.println(findSecondLargestPerimeter(triangles0));
+        System.out.println(findSecondLargestPerimeter(triangles1));
+        System.out.println(findSecondLargestPerimeter(triangles2));
+        System.out.println(findSecondLargestPerimeter(triangles3));
+        System.out.println(findSecondLargestPerimeter(triangles4));
+        System.out.println(findSecondLargestPerimeter(triangles5));
     }
 }
