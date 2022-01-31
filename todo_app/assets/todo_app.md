@@ -35,7 +35,6 @@ Then it should print the usage information.
 $ todo
 
 Command Line Todo application
-=============================
 
 Command line arguments:
 -l   Lists all the tasks
