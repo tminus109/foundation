@@ -159,7 +159,7 @@ Assume that the following file is currently in the staging area:
 
 Your current directory is computer-shop/.
 
-Remove every file from the staging area: git reset (as long as desktop is the git repository)
+Remove every file from the staging area: git rm --cached . (as long as desktop is the git repository)
 Rename desktop/instock/ to desktop/in-stock/: mv desktop/instock desktop/in-stock
 Delete the last 2 lines from desktop/in-transit/summary.csv: ?
 Commit the changes: git add -A | git commit -m "commit message"
