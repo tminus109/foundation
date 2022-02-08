@@ -1,20 +1,30 @@
 package sprites;
 
+import utilities.Grid;
 import utilities.PositionedImage;
 
 import java.awt.*;
 import java.util.Random;
 
-public abstract class Sprite {
+public abstract class Sprite implements Grid {
     String type, file, direction;
     PositionedImage image;
     int posX, posY, savedX, savedY, level, maxHP, HP, DP, SP;
-    boolean isDead = false;
-    boolean hasKey = false;
+    boolean isDead;
+    boolean hasKey;
+    boolean fighting;
     Random random = new Random();
 
+    public boolean isFighting() {
+        return fighting;
+    }
+
+    public void setFighting(boolean fighting) {
+        this.fighting = fighting;
+    }
+
     public int rollDice() {
-        return random.nextInt(7);
+        return random.nextInt(7 - 1) + 1;
     }
 
     public void drawSprite(Graphics graphics) {
@@ -25,35 +35,13 @@ public abstract class Sprite {
         this.image = new PositionedImage(filename, posX, posY);
     }
 
-    public void move(String newDirection, boolean[][] maze, int gridSize, int tileSize) {
-        setSavedX(posX);
-        setSavedY(posY);
-        switch (newDirection) {
-            case "left" -> {
-                if (posX - 1 >= 0 && !maze[posX - 1][posY]) {
-                    posX--;
-                }
-            }
-            case "right" -> {
-                if (posX + 1 < gridSize && !maze[posX + 1][posY]) {
-                    posX++;
-                }
-            }
-            case "up" -> {
-                if (posY - 1 >= 0 && !maze[posX][posY - 1]) {
-                    posY--;
-                }
-            }
-            case "down" -> {
-                if (posY + 1 < gridSize && !maze[posX][posY + 1]) {
-                    posY++;
-                }
-            }
-        }
-        setImage(file, posX * tileSize, posY * tileSize);
-    }
-
     public void attack(Sprite sprite) {
+        System.out.println("You are under attack!");
+        setFighting(true);
+        sprite.setFighting(true);
+        // call strike
+        // stop moving
+        // implement battle scene
     }
 
     public void strike() {
@@ -181,7 +169,7 @@ public abstract class Sprite {
         isDead = dead;
     }
 
-    public boolean isHasKey() {
+    public boolean hasKey() {
         return hasKey;
     }
 

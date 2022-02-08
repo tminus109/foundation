@@ -53,7 +53,7 @@ public static void main(String[] args) {
 Here is how you set up a new window and adding our board to it:
 
 JFrame frame = new JFrame("RPG Game");
-app.Board board = new app.Board();
+Board board = new Board();
 frame.add(board);
 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 frame.setVisible(true);
@@ -133,8 +133,8 @@ Models:
 
 - GameObject,
 - Characters (monsters, hero),
-- sprites.Monster (types),
-- sprites.Hero,
+- Monster (types),
+- Hero,
 - Area,
 - Tile (emptyTile, notEmptyTile).
 

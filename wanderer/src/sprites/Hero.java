@@ -1,9 +1,10 @@
 package sprites;
 
+import utilities.Grid;
 import utilities.PositionedImage;
 
-public class Hero extends Sprite {
-    public Hero(int[] startPos, int tileSize) {
+public class Hero extends Sprite implements Grid {
+    public Hero(int[] startPos) {
         this.type = "Hero";
         this.file = "assets/hero_down.png";
         this.direction = "down";
@@ -11,7 +12,7 @@ public class Hero extends Sprite {
         this.posY = startPos[1];
         this.savedX = posX;
         this.savedY = posY;
-        this.image = new PositionedImage(file, posX * tileSize, posY * tileSize);
+        this.image = new PositionedImage(file, posX * tile, posY * tile);
         this.level = 1;
         this.maxHP = 20 + (3 * rollDice());
         this.HP = maxHP;
@@ -19,8 +20,7 @@ public class Hero extends Sprite {
         this.SP = 5 + rollDice();
     }
 
-    @Override
-    public void move(String newDirection, boolean[][] maze, int gridSize, int tileSize) {
+    public void move(String newDirection, boolean[][] maze) {
         setSavedX(posX);
         setSavedY(posY);
         switch (newDirection) {
@@ -32,7 +32,7 @@ public class Hero extends Sprite {
             }
             case "right" -> {
                 setFile("assets/hero_right.png");
-                if (posX + 1 < gridSize && !maze[posX + 1][posY]) {
+                if (posX + 1 < grid && !maze[posX + 1][posY]) {
                     posX++;
                 }
             }
@@ -44,11 +44,11 @@ public class Hero extends Sprite {
             }
             case "down" -> {
                 setFile("assets/hero_down.png");
-                if (posY + 1 < gridSize && !maze[posX][posY + 1]) {
+                if (posY + 1 < grid && !maze[posX][posY + 1]) {
                     posY++;
                 }
             }
         }
-        setImage(file, posX * tileSize, posY * tileSize);
+        setImage(file, posX * tile, posY * tile);
     }
 }
