@@ -15,7 +15,7 @@ public abstract class Sprite implements Grid {
     boolean fighting;
 
     public boolean isFighting() {
-        return fighting;
+        return !fighting;
     }
 
     public void setFighting(boolean fighting) {
@@ -40,7 +40,7 @@ public abstract class Sprite implements Grid {
     }
 
     public void attack(Sprite sprite) {
-        System.out.println("You are under attack!");
+        System.out.println(this.getType() + " attacked " + sprite.getType());
         setFighting(true);
         sprite.setFighting(true);
         // call strike

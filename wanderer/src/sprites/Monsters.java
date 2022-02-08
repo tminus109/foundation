@@ -54,7 +54,7 @@ public class Monsters extends Sprite {
 
     public void moveMonsters(Map map, Hero hero) {
         for (Monster monster : monsterList) {
-            if (!monster.isFighting()) {
+            if (monster.isFighting()) {
                 monster.move(monster.nextDirection(), map, hero);
             }
         }

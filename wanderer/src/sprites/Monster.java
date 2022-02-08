@@ -22,7 +22,7 @@ public abstract class Monster extends Sprite {
                     attack(hero);
                 } else if (map.isTileOnFloor(posX - 1, posY)
                         && !hero.occupiesTile(posX - 1, posY)
-                        && map.isTileOccupiedByMonster(new int[]{posX - 1, posY})) {
+                        && !map.isTileOccupiedByMonster(new int[]{posX - 1, posY})) {
                     posX--;
                 }
             }
@@ -31,7 +31,7 @@ public abstract class Monster extends Sprite {
                     attack(hero);
                 } else if (map.isTileOnFloor(posX + 1, posY)
                         && !hero.occupiesTile(posX + 1, posY)
-                        && map.isTileOccupiedByMonster(new int[]{posX + 1, posY})) {
+                        && !map.isTileOccupiedByMonster(new int[]{posX + 1, posY})) {
                     posX++;
                 }
             }
@@ -40,7 +40,7 @@ public abstract class Monster extends Sprite {
                     attack(hero);
                 } else if (map.isTileOnFloor(posX, posY - 1)
                         && !hero.occupiesTile(posX, posY - 1)
-                        && map.isTileOccupiedByMonster(new int[]{posX, posY - 1})) {
+                        && !map.isTileOccupiedByMonster(new int[]{posX, posY - 1})) {
                     posY--;
                 }
             }
@@ -49,7 +49,7 @@ public abstract class Monster extends Sprite {
                     attack(hero);
                 } else if (map.isTileOnFloor(posX, posY + 1)
                         && !hero.occupiesTile(posX, posY + 1)
-                        && map.isTileOccupiedByMonster(new int[]{posX, posY + 1})) {
+                        && !map.isTileOccupiedByMonster(new int[]{posX, posY + 1})) {
                     posY++;
                 }
             }

@@ -120,20 +120,21 @@ public class Map implements Grid {
         this.tilesOccupiedByMonster.put(monster, tile);
     }
 
-    public boolean isTileOccupiedByMonster(int[] newPos) {
+    public boolean isTileOccupiedByMonster(int[] tile) {
         for (HashMap.Entry<Monster, int[]> monster : tilesOccupiedByMonster.entrySet()) {
-            if (Arrays.equals(monster.getValue(), newPos)) {
-                return false;
+            if (Arrays.equals(monster.getValue(), tile)) {
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
-    //    public void printMap() {
-//        for (HashMap.Entry<Monster, int[]> m : tilesOccupiedByMonster.entrySet()) {
-//            int[] a = m.getValue();
-//            System.out.println(m.getKey() + " " + Arrays.toString(a));
-//        }
-//        System.out.println();
-//    }
+    public Monster getMonster(int[] tile) {
+        for (HashMap.Entry<Monster, int[]> monster : tilesOccupiedByMonster.entrySet()) {
+            if (Arrays.equals(monster.getValue(), tile)) {
+                return monster.getKey();
+            }
+        }
+        return null;
+    }
 }

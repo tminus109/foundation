@@ -64,7 +64,7 @@ public class Board extends JComponent implements KeyListener, Grid {
                 monsters.moveMonsters(map, hero);
                 for (int i = 0; i < monsters.getMonsterCount(); i++) {
                     Monster monster = monsters.getMonsterList().get(i);
-                    if (!monster.isFighting()) {
+                    if (monster.isFighting()) {
                         repaint(monster.getSavedX() * tile, monster.getSavedY() * tile, tile, tile);
                         repaint(monster.getPosX() * tile, monster.getPosY() * tile, tile, tile);
                     }

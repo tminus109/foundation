@@ -27,25 +27,37 @@ public class Hero extends Sprite implements Grid {
         switch (newDirection) {
             case "left" -> {
                 setFile("assets/hero_left.png");
-                if (map.isTileOnFloor(posX - 1, posY)) {
+                int[] tile = new int[]{posX - 1, posY};
+                if (map.isTileOccupiedByMonster(tile)) {
+                    attack(map.getMonster(tile));
+                } else if (map.isTileOnFloor(posX - 1, posY)) {
                     posX--;
                 }
             }
             case "right" -> {
                 setFile("assets/hero_right.png");
-                if (map.isTileOnFloor(posX + 1, posY)) {
+                int[] tile = new int[]{posX + 1, posY};
+                if (map.isTileOccupiedByMonster(tile)) {
+                    attack(map.getMonster(tile));
+                } else if (map.isTileOnFloor(posX + 1, posY)) {
                     posX++;
                 }
             }
             case "up" -> {
                 setFile("assets/hero_up.png");
-                if (map.isTileOnFloor(posX, posY - 1)) {
+                int[] tile = new int[]{posX, posY - 1};
+                if (map.isTileOccupiedByMonster(tile)) {
+                    attack(map.getMonster(tile));
+                } else if (map.isTileOnFloor(posX, posY - 1)) {
                     posY--;
                 }
             }
             case "down" -> {
                 setFile("assets/hero_down.png");
-                if (map.isTileOnFloor(posX, posY + 1)) {
+                int[] tile = new int[]{posX, posY + 1};
+                if (map.isTileOccupiedByMonster(tile)) {
+                    attack(map.getMonster(tile));
+                } else if (map.isTileOnFloor(posX, posY + 1)) {
                     posY++;
                 }
             }
@@ -54,6 +66,6 @@ public class Hero extends Sprite implements Grid {
     }
 
     public boolean canBeAttacked(int posX, int posY) {
-        return occupiesTile(posX, posY) && !isFighting();
+        return occupiesTile(posX, posY) && isFighting();
     }
 }
