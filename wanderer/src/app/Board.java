@@ -1,5 +1,6 @@
 package app;
 
+import map.Map;
 import sprites.Hero;
 import sprites.Monster;
 import sprites.Monsters;
@@ -14,15 +15,15 @@ import java.util.TimerTask;
 
 public class Board extends JComponent implements KeyListener, Grid {
     Game game;
+    Map map;
     Hero hero;
     Monsters monsters;
-    boolean[][] maze;
 
     public Board(Game game) {
         this.game = game;
+        this.map = game.getMap();
         this.hero = game.getHero();
         this.monsters = game.getMonsters();
-        this.maze = game.getMap().getMaze();
         setPreferredSize(new Dimension(720, 1000));
         animateMonsters();
     }
@@ -44,13 +45,13 @@ public class Board extends JComponent implements KeyListener, Grid {
     @Override
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            hero.move("up", maze);
+            hero.move("up", map);
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            hero.move("down", maze);
+            hero.move("down", map);
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            hero.move("left", maze);
+            hero.move("left", map);
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            hero.move("right", maze);
+            hero.move("right", map);
         }
         repaint(hero.getSavedX() * tile, hero.getSavedY() * tile, tile, tile);
         repaint(hero.getPosX() * tile, hero.getPosY() * tile, tile, tile);
@@ -60,7 +61,7 @@ public class Board extends JComponent implements KeyListener, Grid {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                monsters.moveMonsters(maze, hero);
+                monsters.moveMonsters(map, hero);
                 for (int i = 0; i < monsters.getMonsterCount(); i++) {
                     Monster monster = monsters.getMonsterList().get(i);
                     if (!monster.isFighting()) {

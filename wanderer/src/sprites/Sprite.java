@@ -13,7 +13,6 @@ public abstract class Sprite implements Grid {
     boolean isDead;
     boolean hasKey;
     boolean fighting;
-    Random random = new Random();
 
     public boolean isFighting() {
         return fighting;
@@ -24,6 +23,7 @@ public abstract class Sprite implements Grid {
     }
 
     public int rollDice() {
+        Random random = new Random();
         return random.nextInt(7 - 1) + 1;
     }
 
@@ -33,6 +33,10 @@ public abstract class Sprite implements Grid {
 
     public void setImage(String filename, int posX, int posY) {
         this.image = new PositionedImage(filename, posX, posY);
+    }
+
+    public boolean occupiesTile(int posX, int posY) {
+        return posX == getPosX() && posY == getPosY();
     }
 
     public void attack(Sprite sprite) {

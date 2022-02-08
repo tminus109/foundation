@@ -1,5 +1,6 @@
 package sprites;
 
+import map.Map;
 import utilities.Grid;
 import utilities.PositionedImage;
 
@@ -20,35 +21,39 @@ public class Hero extends Sprite implements Grid {
         this.SP = 5 + rollDice();
     }
 
-    public void move(String newDirection, boolean[][] maze) {
+    public void move(String newDirection, Map map) {
         setSavedX(posX);
         setSavedY(posY);
         switch (newDirection) {
             case "left" -> {
                 setFile("assets/hero_left.png");
-                if (posX - 1 >= 0 && !maze[posX - 1][posY]) {
+                if (map.isTileOnFloor(posX - 1, posY)) {
                     posX--;
                 }
             }
             case "right" -> {
                 setFile("assets/hero_right.png");
-                if (posX + 1 < grid && !maze[posX + 1][posY]) {
+                if (map.isTileOnFloor(posX + 1, posY)) {
                     posX++;
                 }
             }
             case "up" -> {
                 setFile("assets/hero_up.png");
-                if (posY - 1 >= 0 && !maze[posX][posY - 1]) {
+                if (map.isTileOnFloor(posX, posY - 1)) {
                     posY--;
                 }
             }
             case "down" -> {
                 setFile("assets/hero_down.png");
-                if (posY + 1 < grid && !maze[posX][posY + 1]) {
+                if (map.isTileOnFloor(posX, posY + 1)) {
                     posY++;
                 }
             }
         }
         setImage(file, posX * tile, posY * tile);
+    }
+
+    public boolean canBeAttacked(int posX, int posY) {
+        return occupiesTile(posX, posY) && !isFighting();
     }
 }

@@ -6,24 +6,21 @@ import sprites.Monsters;
 import utilities.Grid;
 
 import java.awt.*;
-import java.util.List;
 
 public class Game implements Grid {
     int maxLevel, level;
-    boolean gameOn;
+    boolean isGameOn;
     Map map;
-    List<int[]> floorTiles;
     Hero hero;
     Monsters monsters;
 
     public Game() {
         this.maxLevel = 3;
         this.level = 1;
-        this.gameOn = true;
+        this.isGameOn = true;
         this.map = new Map();
-        this.floorTiles = map.floorTiles;
-        this.hero = new Hero(map.floorTiles.get(0));
-        this.monsters = new Monsters(floorTiles, level);
+        this.hero = new Hero(map.getFloorTiles().get(0));
+        this.monsters = new Monsters(map, level);
     }
 
     public void drawGame(Graphics graphics) {
@@ -49,11 +46,11 @@ public class Game implements Grid {
     }
 
     public boolean isGameOn() {
-        return gameOn;
+        return isGameOn;
     }
 
     public void setGameOn(boolean gameOn) {
-        this.gameOn = gameOn;
+        this.isGameOn = gameOn;
     }
 
     public Map getMap() {
@@ -62,14 +59,6 @@ public class Game implements Grid {
 
     public void setMap(Map map) {
         this.map = map;
-    }
-
-    public List<int[]> getFloorTiles() {
-        return floorTiles;
-    }
-
-    public void setFloorTiles(List<int[]> floorTiles) {
-        this.floorTiles = floorTiles;
     }
 
     public Hero getHero() {

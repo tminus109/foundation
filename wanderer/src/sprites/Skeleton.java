@@ -3,7 +3,7 @@ package sprites;
 import utilities.PositionedImage;
 
 public class Skeleton extends Monster {
-    public Skeleton(int[] startPos, int gameLevel) {
+    public Skeleton(int[] startPos, int gameLevel, int id) {
         this.type = "Skeleton";
         this.file = "assets/skeleton.png";
         this.posX = startPos[0];

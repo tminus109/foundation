@@ -1,21 +1,21 @@
 package map;
 
+import sprites.Monster;
 import utilities.Grid;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Random;
 
 public class Map implements Grid {
-    public boolean[][] maze;
-    public List<int[]> floorTiles;
-    int wallCount, length, direction;
-    Random random;
+    boolean[][] maze;
+    List<int[]> floorTiles;
+    HashMap<Monster, int[]> tilesOccupiedByMonster;
 
     public Map() {
         this.maze = buildMap();
         this.floorTiles = getFloorTiles();
+        this.tilesOccupiedByMonster = new HashMap<>();
     }
 
     boolean[][] createMapAllFloorTiles() {
@@ -29,17 +29,17 @@ public class Map implements Grid {
     }
 
     int wallCount() {
-        random = new Random(40);
-        return random.nextInt(80);
+        Random random = new Random();
+        return random.nextInt(80 - 40) + 40;
     }
 
     int directionOfNewWall() {
-        random = new Random();
+        Random random = new Random();
         return random.nextInt(4);
     }
 
     int lengthOfNewWall() {
-        random = new Random();
+        Random random = new Random();
         return random.nextInt(grid);
     }
 
@@ -47,11 +47,10 @@ public class Map implements Grid {
         boolean[][] map = createMapAllFloorTiles();
         int x = 0;
         int y = 0;
-        wallCount = wallCount();
-        for (int i = 0; i < wallCount(); i++) {
-            length = lengthOfNewWall();
-            direction = directionOfNewWall();
-            for (int j = 0; j < length; j++) {
+        int wallCount = wallCount();
+        for (int i = 0; i < wallCount; i++) {
+            int direction = directionOfNewWall();
+            for (int j = 0; j < lengthOfNewWall(); j++) {
                 if (direction == 0 && x < grid - 1) {
                     x++;
                 } else if (direction == 1 && y < grid - 1) {
@@ -92,4 +91,49 @@ public class Map implements Grid {
     public boolean[][] getMaze() {
         return maze;
     }
+
+    public boolean isOutOfBounds(int posX, int posY) {
+        return posX < 0 || posX >= grid || posY < 0 || posY >= grid;
+    }
+
+    public boolean isWall(int posX, int posY) {
+        return !maze[posX][posY];
+    }
+
+    public boolean isTileOnFloor(int posX, int posY) {
+        return !isOutOfBounds(posX, posY) && isWall(posX, posY);
+    }
+
+    public void setMaze(boolean[][] maze) {
+        this.maze = maze;
+    }
+
+    public void setFloorTiles(List<int[]> floorTiles) {
+        this.floorTiles = floorTiles;
+    }
+
+    public HashMap<Monster, int[]> getTilesOccupiedByMonster() {
+        return tilesOccupiedByMonster;
+    }
+
+    public void setTileOccupiedByMonster(Monster monster, int[] tile) {
+        this.tilesOccupiedByMonster.put(monster, tile);
+    }
+
+    public boolean isTileOccupiedByMonster(int[] newPos) {
+        for (HashMap.Entry<Monster, int[]> monster : tilesOccupiedByMonster.entrySet()) {
+            if (Arrays.equals(monster.getValue(), newPos)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //    public void printMap() {
+//        for (HashMap.Entry<Monster, int[]> m : tilesOccupiedByMonster.entrySet()) {
+//            int[] a = m.getValue();
+//            System.out.println(m.getKey() + " " + Arrays.toString(a));
+//        }
+//        System.out.println();
+//    }
 }
