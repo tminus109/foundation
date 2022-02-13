@@ -1,16 +1,16 @@
 package sprites;
 
-import map.Map;
+import maze.Maze;
 import utilities.Grid;
 import utilities.PositionedImage;
 
 public class Hero extends Sprite implements Grid {
-    public Hero(int[] startPos) {
+    public Hero(Maze maze) {
         this.type = "Hero";
         this.file = "assets/hero_down.png";
         this.direction = "down";
-        this.posX = startPos[0];
-        this.posY = startPos[1];
+        this.posX = maze.getFloorTiles().get(0)[0];
+        this.posY = maze.getFloorTiles().get(0)[1];
         this.savedX = posX;
         this.savedY = posY;
         this.image = new PositionedImage(file, posX * tile, posY * tile);
@@ -19,53 +19,16 @@ public class Hero extends Sprite implements Grid {
         this.HP = maxHP;
         this.DP = 2 * rollDice();
         this.SP = 5 + rollDice();
+        maze.updateOccupiedTilesMap(this, posX, posY);
     }
 
-    public void move(String newDirection, Map map) {
-        setSavedX(posX);
-        setSavedY(posY);
-        switch (newDirection) {
-            case "left" -> {
-                setFile("assets/hero_left.png");
-                int[] tile = new int[]{posX - 1, posY};
-                if (map.isTileOccupiedByMonster(tile)) {
-                    attack(map.getMonster(tile));
-                } else if (map.isTileOnFloor(posX - 1, posY)) {
-                    posX--;
-                }
-            }
-            case "right" -> {
-                setFile("assets/hero_right.png");
-                int[] tile = new int[]{posX + 1, posY};
-                if (map.isTileOccupiedByMonster(tile)) {
-                    attack(map.getMonster(tile));
-                } else if (map.isTileOnFloor(posX + 1, posY)) {
-                    posX++;
-                }
-            }
-            case "up" -> {
-                setFile("assets/hero_up.png");
-                int[] tile = new int[]{posX, posY - 1};
-                if (map.isTileOccupiedByMonster(tile)) {
-                    attack(map.getMonster(tile));
-                } else if (map.isTileOnFloor(posX, posY - 1)) {
-                    posY--;
-                }
-            }
-            case "down" -> {
-                setFile("assets/hero_down.png");
-                int[] tile = new int[]{posX, posY + 1};
-                if (map.isTileOccupiedByMonster(tile)) {
-                    attack(map.getMonster(tile));
-                } else if (map.isTileOnFloor(posX, posY + 1)) {
-                    posY++;
-                }
-            }
-        }
-        setImage(file, posX * tile, posY * tile);
-    }
-
-    public boolean canBeAttacked(int posX, int posY) {
-        return occupiesTile(posX, posY) && isFighting();
+    public String getFileMatchingNewDirection(String direction) {
+        return switch (direction) {
+            case "left" -> "assets/hero_left.png";
+            case "right" -> "assets/hero_right.png";
+            case "up" -> "assets/hero_up.png";
+            case "down" -> "assets/hero_down.png";
+            default -> "assets/floor_tile.png";
+        };
     }
 }

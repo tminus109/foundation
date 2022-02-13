@@ -1,77 +1,58 @@
 package app;
 
-import map.Map;
+import maze.Maze;
+import maze.RandomMazeBuilder;
+import scoreboard.Scoreboard;
 import sprites.Hero;
-import sprites.Monster;
 import sprites.Monsters;
 import utilities.Grid;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.Timer;
-import java.util.TimerTask;
 
-public class Board extends JComponent implements KeyListener, Grid {
-    Game game;
-    Map map;
+public class Board extends JComponent implements Grid {
+    RandomMazeBuilder randomMazeBuilder;
+    Maze maze;
     Hero hero;
     Monsters monsters;
+    Scoreboard scoreboard;
+    KeyHandler keyHandler;
+    int level;
 
-    public Board(Game game) {
-        this.game = game;
-        this.map = game.getMap();
-        this.hero = game.getHero();
-        this.monsters = game.getMonsters();
-        setPreferredSize(new Dimension(720, 1000));
-        animateMonsters();
+    public Board() {
+        this.setPreferredSize(new Dimension(width, height));
+        this.level = 1;
+        this.randomMazeBuilder = new RandomMazeBuilder();
+        this.maze = new Maze(randomMazeBuilder);
+        this.hero = new Hero(maze);
+        this.monsters = new Monsters(maze, level);
+        monsters.animateMonsters(this);
+        this.scoreboard = new Scoreboard();
+        this.keyHandler = new KeyHandler(this);
     }
 
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
-        game.drawGame(graphics);
+        maze.drawMaze(graphics);
+        hero.drawSprite(graphics);
+        monsters.drawMonsters(graphics);
+        scoreboard.drawMessage(graphics);
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
+    public Maze getMaze() {
+        return maze;
     }
 
-    @Override
-    public void keyPressed(KeyEvent e) {
+    public Monsters getMonsters() {
+        return monsters;
     }
 
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            hero.move("up", map);
-        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            hero.move("down", map);
-        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            hero.move("left", map);
-        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            hero.move("right", map);
-        }
-        repaint(hero.getSavedX() * tile, hero.getSavedY() * tile, tile, tile);
-        repaint(hero.getPosX() * tile, hero.getPosY() * tile, tile, tile);
+    public Hero getHero() {
+        return hero;
     }
 
-    public void animateMonsters() {
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                monsters.moveMonsters(map, hero);
-                for (int i = 0; i < monsters.getMonsterCount(); i++) {
-                    Monster monster = monsters.getMonsterList().get(i);
-                    if (monster.isFighting()) {
-                        repaint(monster.getSavedX() * tile, monster.getSavedY() * tile, tile, tile);
-                        repaint(monster.getPosX() * tile, monster.getPosY() * tile, tile, tile);
-                    }
-                }
-            }
-        };
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(timerTask, 3000L, 3000L);
+    public KeyHandler getKeyHandler() {
+        return keyHandler;
     }
 }

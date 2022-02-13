@@ -1,4 +1,4 @@
-package map;
+package maze;
 
 import utilities.PositionedImage;
 
@@ -7,12 +7,14 @@ import java.awt.*;
 public class Tile {
     boolean isWall;
     PositionedImage image;
+    String filename;
 
     public Tile(boolean isWall, int X, int Y) {
         this.isWall = isWall;
-        String filename = "assets/wall_tile.png";
-        if (!isWall) {
-            filename = "assets/floor_tile.png";
+        if (isWall) {
+            this.filename = "assets/wall_tile.png";
+        } else {
+            this.filename = "assets/floor_tile.png";
         }
         this.image = new PositionedImage(filename, X, Y);
     }

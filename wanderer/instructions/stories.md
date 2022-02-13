@@ -1,8 +1,8 @@
 Stories should be followed by implementation.
 Completing a story means you made a little progress on the project.
-Keep in mind, that you have to develop the complete game.
+Keep in mind, that you have to develop the complete board.
 So when working on a specific story,
-you should be able to reuse the implementation later in other parts of the game.
+you should be able to reuse the implementation later in other parts of the board.
 
 Draw a screen with tiles:
 
@@ -30,9 +30,9 @@ the hero should face the direction where he went.
 
 7. Map boundaries:
 
-Given the hero on any edge of the map,
+Given the hero on any edge of the maze,
 when the hero is moved by the arrow keys towards the edge,
-it should not move or leave the map, only its direction should change if necessary.
+it should not move or leave the maze, only its direction should change if necessary.
 
 8. Walls:
 
@@ -44,19 +44,19 @@ Extend with different kinds of sprites.
 
 9. Skeletons:
 
-When the map is rendered on the screen,
-3 skeletons should be on the map, somewhere on floor type tiles.
+When the maze is rendered on the screen,
+3 skeletons should be on the maze, somewhere on floor type tiles.
 
 10. Boss:
 
-When the map is rendered on the screen,
-a boss should be on the map, somewhere on floor type tiles.
+When the maze is rendered on the screen,
+a boss should be on the maze, somewhere on floor type tiles.
 
-Create HUD, fight & game logic:
+Create HUD, fight & board logic:
 
 11. Stats:
 
-Stats should appear below the map in a white box as black strings. It should contain:
+Stats should appear below the maze in a white box as black strings. It should contain:
 
 - The level of the Hero,
 - The current HP (health point) of the Hero,
@@ -85,9 +85,9 @@ Optional features:
 
 The sprites should only move when the player moves the hero.
 
-16. Random map:
+16. Random maze:
 
-When map is created the placement of walls should be random.
+When maze is created the placement of walls should be random.
 Make sure that all floor tiles are connected.
 
 17. Leveling:

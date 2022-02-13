@@ -1,5 +1,7 @@
 package sprites;
 
+import app.Board;
+import maze.Maze;
 import utilities.Grid;
 import utilities.PositionedImage;
 
@@ -10,17 +12,7 @@ public abstract class Sprite implements Grid {
     String type, file, direction;
     PositionedImage image;
     int posX, posY, savedX, savedY, level, maxHP, HP, DP, SP;
-    boolean isDead;
-    boolean hasKey;
-    boolean fighting;
-
-    public boolean isFighting() {
-        return !fighting;
-    }
-
-    public void setFighting(boolean fighting) {
-        this.fighting = fighting;
-    }
+    boolean isDead, isFighting, hasKey;
 
     public int rollDice() {
         Random random = new Random();
@@ -31,28 +23,95 @@ public abstract class Sprite implements Grid {
         image.draw(graphics);
     }
 
-    public void setImage(String filename, int posX, int posY) {
-        this.image = new PositionedImage(filename, posX, posY);
+    public void setImage(String file, int posX, int posY) {
+        this.image = new PositionedImage(file, posX, posY);
     }
 
-    public boolean occupiesTile(int posX, int posY) {
-        return posX == getPosX() && posY == getPosY();
+    public void move(String direction, Board board) {
+        if (!isDead) {
+            Maze maze = board.getMaze();
+            int nextPosX = posX;
+            int nextPosY = posY;
+            switch (direction) {
+                case "left" -> nextPosX--;
+                case "right" -> nextPosX++;
+                case "up" -> nextPosY--;
+                case "down" -> nextPosY++;
+            }
+            if (this instanceof Hero && !file.equals(direction)) {
+                file = ((Hero) this).getFileMatchingNewDirection(direction);
+            }
+            if (maze.isTileFloorAndAvailable(nextPosX, nextPosY)) {
+                savedX = posX;
+                savedY = posY;
+                posX = nextPosX;
+                posY = nextPosY;
+                maze.updateOccupiedTilesMap(this, posX, posY);
+            } else if (maze.isTileOccupied(nextPosX, nextPosY)) {
+                Sprite sprite = maze.getSpriteOccupyingTile(nextPosX, nextPosY);
+                if (canAttackOtherSprite(sprite)) {
+                    attack(sprite, board);
+                }
+            }
+            setImage(file, posX * tile, posY * tile);
+        }
     }
 
-    public void attack(Sprite sprite) {
-        System.out.println(this.getType() + " attacked " + sprite.getType());
-        setFighting(true);
+    public boolean canAttackOtherSprite(Sprite sprite) {
+        if (isDead || isFighting || sprite.isDead || sprite.isFighting) {
+            return false;
+        }
+        return (!(this instanceof Boss) || !(sprite instanceof Skeleton)) &&
+                (!(this instanceof Skeleton) ||
+                        (!(sprite instanceof Skeleton) && !(sprite instanceof Boss)));
+    }
+
+    public void attack(Sprite sprite, Board board) {
+        this.setFighting(true);
         sprite.setFighting(true);
-        // call strike
-        // stop moving
-        // implement battle scene
+        System.out.println(this.type + " attacked " + sprite.type);
+        if (this instanceof Boss || this instanceof Skeleton) {
+            strike(sprite, board);
+        }
     }
 
-    public void strike() {
+    public void strike(Sprite sprite, Board board) {
+        int SV = this.SP * rollDice() * 2;
+        if (SV > sprite.DP) {
+            sprite.HP = sprite.HP - (SV - sprite.DP);
+            System.out.println(this.type + " struck " + sprite.type + " with a force of " + SV + " who's HP after strike = " + sprite.HP + " and maxHP = " + sprite.maxHP);
+            if (sprite.HP > 0) {
+                sprite.strike(this, board);
+            } else {
+                sprite.killOffSprite(board);
+                this.isFighting = false;
+                if (this instanceof Hero && sprite.hasKey){
+                    sprite.setHasKey(false);
+                    this.setHasKey(true);
+                    System.out.println("Does hero have the key? " + this.hasKey);
+                }
+            }
+        } else if (SV < sprite.DP) {
+            System.out.println("You need to hit harder. Try again!");
+        }
+    }
+
+    public void killOffSprite(Board board) {
+        System.out.println(this.type + " is dead");
+        isFighting = false;
+        isDead = true;
+        if (this instanceof Boss || this instanceof Skeleton) {
+            Monsters monsters = board.getMonsters();
+            monsters.removeMonsterFromMonsterList((Monster) this);
+        }
+        Maze maze = board.getMaze();
+        maze.removeSpriteFromOccupiedTilesMap(this);
+        setImage("assets/floor_tile.png", getPosX(), getPosY());
+        board.repaint(getPosX() * tile, getPosY() * tile, tile, tile);
     }
 
     public void levelUp() {
-        level++;
+        this.level++;
     }
 
     @Override
@@ -61,120 +120,36 @@ public abstract class Sprite implements Grid {
                 + " | DP: " + DP + " | SP: " + SP;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getFile() {
         return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
-    }
-
-    public String getDirection() {
-        return direction;
-    }
-
-    public void setDirection(String direction) {
-        this.direction = direction;
-    }
-
-    public PositionedImage getImage() {
-        return image;
-    }
-
-    public void setImage(PositionedImage image) {
-        this.image = image;
     }
 
     public int getPosX() {
         return posX;
     }
 
-    public void setPosX(int posX) {
-        this.posX = posX;
-    }
-
     public int getPosY() {
         return posY;
-    }
-
-    public void setPosY(int posY) {
-        this.posY = posY;
     }
 
     public int getSavedX() {
         return savedX;
     }
 
-    public void setSavedX(int savedX) {
-        this.savedX = savedX;
-    }
-
     public int getSavedY() {
         return savedY;
-    }
-
-    public void setSavedY(int savedY) {
-        this.savedY = savedY;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public int getMaxHP() {
-        return maxHP;
-    }
-
-    public void setMaxHP(int maxHP) {
-        this.maxHP = maxHP;
-    }
-
-    public int getHP() {
-        return HP;
-    }
-
-    public void setHP(int HP) {
-        this.HP = HP;
-    }
-
-    public int getDP() {
-        return DP;
-    }
-
-    public void setDP(int DP) {
-        this.DP = DP;
-    }
-
-    public int getSP() {
-        return SP;
-    }
-
-    public void setSP(int SP) {
-        this.SP = SP;
     }
 
     public boolean isDead() {
         return isDead;
     }
 
-    public void setDead(boolean dead) {
-        isDead = dead;
+    public boolean isFighting() {
+        return isFighting;
     }
 
-    public boolean hasKey() {
-        return hasKey;
+    public void setFighting(boolean fighting) {
+        isFighting = fighting;
     }
 
     public void setHasKey(boolean hasKey) {

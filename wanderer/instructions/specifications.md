@@ -32,7 +32,7 @@ or level X+1 (40%) or level X+2 (10%).
 One of the monsters is the boss.
 One of the monsters (not the boss) is holding the key,
 so if it is killed the hero goes to the next area, but also the boss has to be killed.
-The game screen also contains a text area where info of the sprites' are provided.
+The board screen also contains a text area where info of the sprites' are provided.
 It shows all stats of the hero.
 If the hero is on the same tile with a monster, it shows all stats of the monster as well.
 
@@ -45,10 +45,10 @@ After every two move, the monsters move one tile as well.
 The Characters:
 
 Every character has a (max and current) health point (HP), defend (DP) and strike points (SP).
-These values can change during the game.
+These values can change during the board.
 When a character's health point is 0 or below, it is dead.
 It disappears from the area.
-If it's the hero, it is the end of the game.
+If it's the hero, it is the end of the board.
 
 Starting stats:
 

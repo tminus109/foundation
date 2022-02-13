@@ -1,28 +1,28 @@
 package sprites;
 
-import map.Map;
+import app.Board;
+import maze.Maze;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Random;
+
 
 public class Monsters extends Sprite {
-    List<Monster> monsterList;
     int monsterCount;
+    List<Monster> monsterList;
 
-    public Monsters(Map map, int gameLevel) {
-        this.monsterList = new ArrayList<>();
+    public Monsters(Maze maze, int gameLevel) {
         this.monsterCount = 1 + 3;
-        initMonsters(map, gameLevel);
+        this.monsterList = new ArrayList<>();
+        initMonsters(maze, gameLevel);
     }
 
-    public List<Integer> spawnPositions(List<int[]> floorTiles) {
+    public List<Integer> computeSpawnPositions(List<int[]> floorTiles) {
         Random random = new Random();
         List<Integer> spawnPositions = new ArrayList<>();
-        spawnPositions.add(0);
         for (int i = 0; i < monsterCount; i++) {
-            int nextPos = random.nextInt(floorTiles.size());
+            int nextPos = random.nextInt(floorTiles.size() - 1) + 1;
             if (!spawnPositions.contains(nextPos)) {
                 spawnPositions.add(nextPos);
             } else {
@@ -32,18 +32,20 @@ public class Monsters extends Sprite {
         return spawnPositions;
     }
 
-    public void initMonsters(Map map, int gameLevel) {
-        List<int[]> floorTiles = map.getFloorTiles();
-        List<Integer> spawnPositions = spawnPositions(floorTiles);
-        Boss boss = new Boss(floorTiles.get(spawnPositions.get(1)), gameLevel, 1);
-        map.setTileOccupiedByMonster(boss, new int[]{boss.getPosX(), boss.getPosY()});
+    public void initMonsters(Maze maze, int gameLevel) {
+        List<int[]> floorTiles = maze.getFloorTiles();
+        List<Integer> spawnPositions = computeSpawnPositions(floorTiles);
+        Boss boss = new Boss(floorTiles.get(spawnPositions.get(0)), gameLevel);
+        maze.updateOccupiedTilesMap(boss, boss.getPosX(), boss.getPosY());
         monsterList.add(boss);
-        for (int i = 2; i < spawnPositions.size(); i++) {
-            Skeleton skeleton = new Skeleton(floorTiles.get(spawnPositions.get(i)), gameLevel, i);
+        for (int i = 1; i < monsterCount; i++) {
+            Skeleton skeleton = new Skeleton(floorTiles.get(spawnPositions.get(i)), gameLevel);
+            if (i == 1) {
+                skeleton.setHasKey(true);
+            }
             monsterList.add(skeleton);
-            map.setTileOccupiedByMonster(skeleton, new int[]{skeleton.getPosX(), skeleton.getPosY()});
+            maze.updateOccupiedTilesMap(skeleton, skeleton.getPosX(), skeleton.getPosY());
         }
-        monsterList.get(2).setHasKey(true);
     }
 
     public void drawMonsters(Graphics graphics) {
@@ -52,19 +54,38 @@ public class Monsters extends Sprite {
         }
     }
 
-    public void moveMonsters(Map map, Hero hero) {
-        for (Monster monster : monsterList) {
-            if (monster.isFighting()) {
-                monster.move(monster.nextDirection(), map, hero);
+    public void removeMonsterFromMonsterList(Monster monster) {
+        monsterList.remove(monster);
+    }
+
+    public Monster getFightingMonster() {
+        for (int i = 0; i < monsterCount; i++) {
+            if (monsterList.get(i).isFighting()) {
+                return monsterList.get(i);
             }
         }
+        return null;
     }
 
-    public int getMonsterCount() {
-        return monsterList.size();
-    }
-
-    public List<Monster> getMonsterList() {
-        return monsterList;
+    public void animateMonsters(Board board) {
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                for (int i = 0; i < monsterList.size(); i++) {
+                    Monster monster = monsterList.get(i);
+                    if (!monster.isFighting()) {
+                        int prevX = monster.getPosX();
+                        int prevY = monster.getPosY();
+                        monster.move(monster.computeNextRandomDirection(), board);
+                        if (monster.getPosX() != prevX || monster.getPosY() != prevY) {
+                            board.repaint(monster.getSavedX() * tile, monster.getSavedY() * tile, tile, tile);
+                            board.repaint(monster.getPosX() * tile, monster.getPosY() * tile, tile, tile);
+                        }
+                    }
+                }
+            }
+        };
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(timerTask, 1000L, 1000L);
     }
 }

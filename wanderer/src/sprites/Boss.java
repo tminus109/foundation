@@ -3,7 +3,7 @@ package sprites;
 import utilities.PositionedImage;
 
 public class Boss extends Monster {
-    public Boss(int[] startPos, int gameLevel, int id) {
+    public Boss(int[] startPos, int gameLevel) {
         this.type = "Boss";
         this.file = "assets/boss.png";
         this.posX = startPos[0];

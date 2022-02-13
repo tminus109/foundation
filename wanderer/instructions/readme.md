@@ -1,4 +1,4 @@
-Build a hero based walking on tiles and killing monsters type of game.
+Build a hero based walking on tiles and killing monsters type of board.
 The hero is controlled in a maze using the keyboard.
 Heroes and monsters have levels and stats depending on their levels.
 The goal is reach the highest level
@@ -9,7 +9,7 @@ Fork this repository (under your user).
 Clone the repository to your computer.
 Go through the technical details.
 
-Launching the game is running the `app.Board` class' `main()` method.
+Launching the board is running the `app.GameFrame` class' `main()` method.
 
 Here's an example, it contains a big drawable canvas with one image painted on it,
 and handling pressing keys, for moving your hero around.
@@ -31,7 +31,7 @@ testBoxX = 300;
 testBoxY = 300;
 }
 
-Set the size of your draw board:
+Set the size of your draw gameFrame:
 
 setPreferredSize(new Dimension(720, 720));
 setVisible(true);
@@ -50,23 +50,23 @@ image.draw(graphics);
 
 public static void main(String[] args) {
 
-Here is how you set up a new window and adding our board to it:
+Here is how you set up a new window and adding our gameFrame to it:
 
 JFrame frame = new JFrame("RPG Game");
-Board board = new Board();
-frame.add(board);
+Board gameFrame = new Board();
+frame.add(gameFrame);
 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 frame.setVisible(true);
 frame.pack();
 
 Here is how you can add a key event listener.
-The board object will be notified when hitting any key
+The gameFrame object will be notified when hitting any key
 with the system calling one of the below 3 methods:
 
-frame.addKeyListener(board);
+frame.addKeyListener(gameFrame);
 
 Notice (at the top) that we can only do this
-because this Board class (the type of the board object) is also a KeyListener.
+because this Board class (the type of the gameFrame object) is also a KeyListener.
 
 }
 
@@ -146,7 +146,7 @@ GameLogic:
 Main:
 
 - handling events,
-- current game.
+- current board.
 
 (Think about task breakdown in Kanban together.)
 
