@@ -7,7 +7,6 @@ public class GameFrame extends JFrame {
         this.add(board);
         this.addKeyListener(board.getKeyHandler());
         this.setTitle("Wanderer Game");
-        this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);

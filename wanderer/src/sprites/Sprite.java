@@ -2,6 +2,7 @@ package sprites;
 
 import app.Board;
 import maze.Maze;
+import scoreboard.Scoreboard;
 import utilities.Grid;
 import utilities.PositionedImage;
 
@@ -39,9 +40,9 @@ public abstract class Sprite implements Grid {
                 case "down" -> nextPosY++;
             }
             if (this instanceof Hero && !file.equals(direction)) {
-                file = ((Hero) this).getFileMatchingNewDirection(direction);
+                file = ((Hero) this).getFileMatchingDirection(direction);
             }
-            if (maze.isTileFloorAndAvailable(nextPosX, nextPosY)) {
+            if (maze.isTileFloorAndUnoccupied(nextPosX, nextPosY) && !isFighting) {
                 savedX = posX;
                 savedY = posY;
                 posX = nextPosX;
@@ -67,37 +68,42 @@ public abstract class Sprite implements Grid {
     }
 
     public void attack(Sprite sprite, Board board) {
+        Scoreboard scoreboard = board.getScoreboard();
         this.setFighting(true);
         sprite.setFighting(true);
-        System.out.println(this.type + " attacked " + sprite.type);
-        if (this instanceof Boss || this instanceof Skeleton) {
-            strike(sprite, board);
-        }
+        scoreboard.setMessage(this.type + " attacked " + sprite.type + ":\n" +
+                this + "\n" +
+                sprite + "\n" +
+                "You can't run away from this fight.\n" +
+                "Press SPACE to strike.\n");
+        board.repaint(0, 721, width, scoreboardHeight);
     }
 
     public void strike(Sprite sprite, Board board) {
+        Monsters monsters = board.getMonsters();
+        Scoreboard scoreboard = board.getScoreboard();
         int SV = this.SP * rollDice() * 2;
         if (SV > sprite.DP) {
             sprite.HP = sprite.HP - (SV - sprite.DP);
-            System.out.println(this.type + " struck " + sprite.type + " with a force of " + SV + " who's HP after strike = " + sprite.HP + " and maxHP = " + sprite.maxHP);
             if (sprite.HP > 0) {
                 sprite.strike(this, board);
             } else {
-                sprite.killOffSprite(board);
                 this.isFighting = false;
-                if (this instanceof Hero && sprite.hasKey){
+                if (this instanceof Hero && sprite.hasKey) {
                     sprite.setHasKey(false);
                     this.setHasKey(true);
-                    System.out.println("Does hero have the key? " + this.hasKey);
                 }
+                sprite.killOffSprite(board);
+                scoreboard.setVictoryMessage(this, monsters.isBossDead());
+                board.repaint(0, 721, width, scoreboardHeight);
             }
         } else if (SV < sprite.DP) {
-            System.out.println("You need to hit harder. Try again!");
+            scoreboard.setMessage("You need to hit harder. Strike again.");
+            board.repaint(0, 721, width, scoreboardHeight);
         }
     }
 
     public void killOffSprite(Board board) {
-        System.out.println(this.type + " is dead");
         isFighting = false;
         isDead = true;
         if (this instanceof Boss || this instanceof Skeleton) {
@@ -108,10 +114,6 @@ public abstract class Sprite implements Grid {
         maze.removeSpriteFromOccupiedTilesMap(this);
         setImage("assets/floor_tile.png", getPosX(), getPosY());
         board.repaint(getPosX() * tile, getPosY() * tile, tile, tile);
-    }
-
-    public void levelUp() {
-        this.level++;
     }
 
     @Override
@@ -140,16 +142,16 @@ public abstract class Sprite implements Grid {
         return savedY;
     }
 
-    public boolean isDead() {
-        return isDead;
-    }
-
     public boolean isFighting() {
         return isFighting;
     }
 
     public void setFighting(boolean fighting) {
         isFighting = fighting;
+    }
+
+    public boolean hasKey() {
+        return hasKey;
     }
 
     public void setHasKey(boolean hasKey) {

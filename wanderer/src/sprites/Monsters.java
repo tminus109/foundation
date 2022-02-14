@@ -67,12 +67,20 @@ public class Monsters extends Sprite {
         return null;
     }
 
+    public boolean isBossDead() {
+        for (Monster monster : monsterList) {
+            if (monster instanceof Boss) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void animateMonsters(Board board) {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                for (int i = 0; i < monsterList.size(); i++) {
-                    Monster monster = monsterList.get(i);
+                for (Monster monster : monsterList) {
                     if (!monster.isFighting()) {
                         int prevX = monster.getPosX();
                         int prevY = monster.getPosY();

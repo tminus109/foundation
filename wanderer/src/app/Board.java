@@ -11,13 +11,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Board extends JComponent implements Grid {
+    int level;
     RandomMazeBuilder randomMazeBuilder;
     Maze maze;
     Hero hero;
     Monsters monsters;
     Scoreboard scoreboard;
     KeyHandler keyHandler;
-    int level;
 
     public Board() {
         this.setPreferredSize(new Dimension(width, height));
@@ -44,15 +44,19 @@ public class Board extends JComponent implements Grid {
         return maze;
     }
 
-    public Monsters getMonsters() {
-        return monsters;
-    }
-
     public Hero getHero() {
         return hero;
     }
 
+    public Monsters getMonsters() {
+        return monsters;
+    }
+
     public KeyHandler getKeyHandler() {
         return keyHandler;
+    }
+
+    public Scoreboard getScoreboard() {
+        return scoreboard;
     }
 }

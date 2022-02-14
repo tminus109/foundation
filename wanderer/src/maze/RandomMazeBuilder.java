@@ -5,7 +5,11 @@ import utilities.Grid;
 import java.util.Random;
 
 public class RandomMazeBuilder implements Grid {
-    Random random = new Random();
+    Random random;
+
+    public RandomMazeBuilder() {
+        this.random = new Random();
+    }
 
     boolean[][] createMazeAllFloorTiles() {
         boolean[][] maze = new boolean[grid][grid];

@@ -58,7 +58,7 @@ public class Maze implements Grid {
         return false;
     }
 
-    public boolean isTileFloorAndAvailable(int posX, int posY) {
+    public boolean isTileFloorAndUnoccupied(int posX, int posY) {
         return !isPositionOutOfBounds(posX, posY) && !isTileWall(posX, posY) &&
                 !isTileOccupied(posX, posY);
     }

@@ -5,4 +5,5 @@ public interface Grid {
     int tile = 72;
     int width = 720;
     int height = 900;
+    int scoreboardHeight = height - grid * tile;
 }

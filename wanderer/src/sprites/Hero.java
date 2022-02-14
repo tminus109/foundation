@@ -22,7 +22,7 @@ public class Hero extends Sprite implements Grid {
         maze.updateOccupiedTilesMap(this, posX, posY);
     }
 
-    public String getFileMatchingNewDirection(String direction) {
+    public String getFileMatchingDirection(String direction) {
         return switch (direction) {
             case "left" -> "assets/hero_left.png";
             case "right" -> "assets/hero_right.png";
@@ -30,5 +30,9 @@ public class Hero extends Sprite implements Grid {
             case "down" -> "assets/hero_down.png";
             default -> "assets/floor_tile.png";
         };
+    }
+
+    public void levelUp() {
+        this.level++;
     }
 }
