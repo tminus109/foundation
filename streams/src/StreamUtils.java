@@ -1,6 +1,9 @@
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toMap;
 
 public class StreamUtils {
     //    Exercise 1
@@ -62,6 +65,17 @@ public class StreamUtils {
                 .collect(Collectors.joining());
     }
 
+    //    Exercise 9
+    public static Map<Character, Integer> countFrequencyOfChars(String string) {
+        return string.chars()
+                .boxed()
+                .collect(toMap(
+                        k -> (char) k.intValue(),
+                        v -> 1,
+                        Integer::sum));
+    }
+
+
     public static void main(String[] args) {
         //    Exercise 1
         List<Integer> numbers = Arrays.asList(1, 3, -2, -4, -7, -3, -8, 12, 19, 6, 9, 10, 14);
@@ -96,5 +110,10 @@ public class StreamUtils {
         List<Character> characters =
                 Arrays.asList('L', 'o', 'r', 'e', 'm', ' ', 'i', 'p', 's', 'u', 'm');
         System.out.println(concatChars(characters));
+
+        //    Exercise 9
+        String string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+                "sed do eiusmod tempor incididunt.";
+        System.out.println(countFrequencyOfChars(string));
     }
 }
