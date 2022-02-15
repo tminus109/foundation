@@ -19,6 +19,7 @@ public class StreamUtils {
                 .map(n -> n * n)
                 .collect(Collectors.toList());
     }
+
 //    Exercise 3
 
     public static List<Integer> findNumbersSquaredGreaterThan20(List<Integer> numbers) {
@@ -26,12 +27,22 @@ public class StreamUtils {
                 .filter(n -> n * n > 20)
                 .collect(Collectors.toList());
     }
+
 //    Exercise 4
 
     public static double calculateAverageOfOddNumbers(List<Integer> numbers) {
         return numbers.stream()
                 .filter(n -> n % 2 != 0)
                 .collect(Collectors.averagingDouble(n -> n));
+    }
+
+    //    Exercise 5
+
+    public static int calculateSumOfOddNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .filter(n -> n % 2 != 0)
+                .mapToInt(n -> n)
+                .sum();
     }
 
     public static void main(String[] args) {
@@ -49,5 +60,9 @@ public class StreamUtils {
         //    Exercise 4
         List<Integer> numbers3 = Arrays.asList(1, 3, -2, -4, -7, -3, -8, 12, 19, 6, 9, 10, 14);
         System.out.println(calculateAverageOfOddNumbers(numbers3));
+
+        //    Exercise 5
+        List<Integer> numbers4 = Arrays.asList(5, 9, 1, 2, 3, 7, 5, 6, 7, 3, 7, 6, 8, 5, 4, 9, 6, 2);
+        System.out.println(calculateSumOfOddNumbers(numbers4));
     }
 }
