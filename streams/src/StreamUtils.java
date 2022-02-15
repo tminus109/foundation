@@ -55,6 +55,12 @@ public class StreamUtils {
                 .collect(Collectors.toList());
     }
 
+    //    Exercise 8
+    public static String concatChars(List<Character> chars) {
+        return chars.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining());
+    }
 
     public static void main(String[] args) {
         //    Exercise 1
@@ -85,5 +91,10 @@ public class StreamUtils {
                 "NEW DELHI", "AMSTERDAM", "ABU DHABI", "PARIS");
         System.out.println(findStringsStartingWithSpecifiedChar(cities, 'R'));
         System.out.println(findStringsStartingWithSpecifiedChar(cities, 'N'));
+
+        //    Exercise 8
+        List<Character> characters =
+                Arrays.asList('L', 'o', 'r', 'e', 'm', ' ', 'i', 'p', 's', 'u', 'm');
+        System.out.println(concatChars(characters));
     }
 }
