@@ -1,7 +1,6 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toMap;
@@ -97,6 +96,32 @@ public class StreamUtils {
                         Integer::sum));
     }
 
+    //    Exercise 11
+    public static Map<String, Integer> getWordFrequency(String file) {
+        Map<String, Integer> wordFrequency = new HashMap<>();
+        try {
+            wordFrequency = Files.lines(Paths.get(file))
+                    .map(l -> l.split("[^a-zA-Z]+"))
+                    .flatMap(Arrays::stream)
+                    .filter(s -> !s.isEmpty())
+                    .collect(toMap(
+                            String::toLowerCase,
+                            v -> 1,
+                            Integer::sum));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return wordFrequency;
+    }
+
+    public static List<Map.Entry<String, Integer>> getMostCommonWordsDesc(String file) {
+        return getWordFrequency(file)
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(Collectors.toList());
+    }
+
     //    Main
     public static void main(String[] args) {
         //    Exercise 1
@@ -148,9 +173,13 @@ public class StreamUtils {
                 new Fox("f6", "black", 6),
                 new Fox("f7", "green", 2),
                 new Fox("f8", "green", 10)));
-
         System.out.println(findGreenFoxes(foxes).toString());
         System.out.println(findGreenFoxesAgedLessThan5(foxes).toString());
         System.out.println(countFrequencyOfFoxesByColor(foxes));
+
+        //    Exercise 11
+        String file = "assets/thor.txt";
+        System.out.println(getWordFrequency(file));
+        System.out.println(getMostCommonWordsDesc(file));
     }
 }
