@@ -19,16 +19,16 @@ public class Board extends JComponent implements Grid {
     Scoreboard scoreboard;
     KeyHandler keyHandler;
 
-    public Board() {
+    Board() {
         this.setPreferredSize(new Dimension(width, height));
         this.level = 1;
         this.randomMazeBuilder = new RandomMazeBuilder();
         this.maze = new Maze(randomMazeBuilder);
         this.hero = new Hero(maze);
         this.monsters = new Monsters(maze, level);
-        monsters.animateMonsters(this);
         this.scoreboard = new Scoreboard();
         this.keyHandler = new KeyHandler(this);
+        monsters.animateMonsters(this);
     }
 
     @Override
@@ -38,6 +38,19 @@ public class Board extends JComponent implements Grid {
         hero.drawSprite(graphics);
         monsters.drawMonsters(graphics);
         scoreboard.drawMessage(graphics);
+    }
+
+    void initNextLevel() {
+        level++;
+        maze = new Maze(randomMazeBuilder);
+        hero.levelUp(maze);
+        monsters.purgeMonsterList();
+        monsters = new Monsters(maze, level);
+        monsters.animateMonsters(this);
+        scoreboard.setMessage("Congrats Wanderer, you've made it to level " + level + "!\n" +
+                "But careful, these monsters are stronger than the ones before.\n" +
+                "Keep wandering!");
+        repaint();
     }
 
     public Maze getMaze() {
@@ -52,11 +65,11 @@ public class Board extends JComponent implements Grid {
         return monsters;
     }
 
-    public KeyHandler getKeyHandler() {
-        return keyHandler;
-    }
-
     public Scoreboard getScoreboard() {
         return scoreboard;
+    }
+
+    public KeyHandler getKeyHandler() {
+        return keyHandler;
     }
 }

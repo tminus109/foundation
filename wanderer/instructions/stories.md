@@ -32,13 +32,13 @@ the hero should face the direction where he went.
 
 Given the hero on any edge of the maze,
 when the hero is moved by the arrow keys towards the edge,
-it should not move or leave the maze, only its direction should change if necessary.
+it should not move or leave the maze, only its direction should change, if necessary.
 
 8. Walls:
 
 Given the hero next to a wall tile,
-when the hero is moved by the arrow keys towards the wall tile it should not move,
-only its direction should change if necessary.
+when the hero is moved by the arrow keys towards the wall tile, it should not move,
+only its direction should change, if necessary.
 
 Extend with different kinds of sprites.
 

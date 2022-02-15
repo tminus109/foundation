@@ -15,17 +15,13 @@ public abstract class Sprite implements Grid {
     int posX, posY, savedX, savedY, level, maxHP, HP, DP, SP;
     boolean isDead, isFighting, hasKey;
 
-    public int rollDice() {
+    public int rollDie() {
         Random random = new Random();
         return random.nextInt(7 - 1) + 1;
     }
 
     public void drawSprite(Graphics graphics) {
         image.draw(graphics);
-    }
-
-    public void setImage(String file, int posX, int posY) {
-        this.image = new PositionedImage(file, posX, posY);
     }
 
     public void move(String direction, Board board) {
@@ -54,7 +50,7 @@ public abstract class Sprite implements Grid {
                     attack(sprite, board);
                 }
             }
-            setImage(file, posX * tile, posY * tile);
+            setImage(file, posX, posY);
         }
     }
 
@@ -71,10 +67,10 @@ public abstract class Sprite implements Grid {
         Scoreboard scoreboard = board.getScoreboard();
         this.setFighting(true);
         sprite.setFighting(true);
-        scoreboard.setMessage(this.type + " attacked " + sprite.type + ":\n" +
+        scoreboard.setMessage(this.type + " attacked " + sprite.type + "!\n" +
                 this + "\n" +
                 sprite + "\n" +
-                "You can't run away from this fight.\n" +
+                "You can't run away from a fight.\n" +
                 "Press SPACE to strike.\n");
         board.repaint(0, 721, width, scoreboardHeight);
     }
@@ -82,7 +78,7 @@ public abstract class Sprite implements Grid {
     public void strike(Sprite sprite, Board board) {
         Monsters monsters = board.getMonsters();
         Scoreboard scoreboard = board.getScoreboard();
-        int SV = this.SP * rollDice() * 2;
+        int SV = this.SP * rollDie() * 2;
         if (SV > sprite.DP) {
             sprite.HP = sprite.HP - (SV - sprite.DP);
             if (sprite.HP > 0) {
@@ -90,8 +86,8 @@ public abstract class Sprite implements Grid {
             } else {
                 this.isFighting = false;
                 if (this instanceof Hero && sprite.hasKey) {
-                    sprite.setHasKey(false);
-                    this.setHasKey(true);
+                    sprite.setKey(false);
+                    this.setKey(true);
                 }
                 sprite.killOffSprite(board);
                 scoreboard.setVictoryMessage(this, monsters.isBossDead());
@@ -118,7 +114,7 @@ public abstract class Sprite implements Grid {
 
     @Override
     public String toString() {
-        return type + " (level " + level + ") HP: " + HP + "/" + maxHP
+        return type + ": L: " + level + " | HP: " + HP + "/" + maxHP
                 + " | DP: " + DP + " | SP: " + SP;
     }
 
@@ -126,20 +122,44 @@ public abstract class Sprite implements Grid {
         return file;
     }
 
+    public void setImage(String file, int posX, int posY) {
+        this.image = new PositionedImage(file, posX * tile, posY * tile);
+    }
+
     public int getPosX() {
         return posX;
+    }
+
+    public void setPosX(int posX) {
+        this.posX = posX;
     }
 
     public int getPosY() {
         return posY;
     }
 
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
     public int getSavedX() {
         return savedX;
     }
 
+    public void setSavedX(int savedX) {
+        this.savedX = savedX;
+    }
+
     public int getSavedY() {
         return savedY;
+    }
+
+    public void setSavedY(int savedY) {
+        this.savedY = savedY;
+    }
+
+    public int getLevel() {
+        return level;
     }
 
     public boolean isFighting() {
@@ -154,7 +174,7 @@ public abstract class Sprite implements Grid {
         return hasKey;
     }
 
-    public void setHasKey(boolean hasKey) {
+    public void setKey(boolean hasKey) {
         this.hasKey = hasKey;
     }
 }

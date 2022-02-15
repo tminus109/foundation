@@ -9,17 +9,17 @@ public class Tile {
     PositionedImage image;
     String filename;
 
-    public Tile(boolean isWall, int X, int Y) {
+    Tile(boolean isWall, int posX, int posY) {
         this.isWall = isWall;
         if (isWall) {
             this.filename = "assets/wall_tile.png";
         } else {
             this.filename = "assets/floor_tile.png";
         }
-        this.image = new PositionedImage(filename, X, Y);
+        this.image = new PositionedImage(filename, posX, posY);
     }
 
-    public void drawTile(Graphics graphics) {
+    void drawTile(Graphics graphics) {
         image.draw(graphics);
     }
 }

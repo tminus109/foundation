@@ -40,40 +40,16 @@ public class Monsters extends Sprite {
         monsterList.add(boss);
         for (int i = 1; i < monsterCount; i++) {
             Skeleton skeleton = new Skeleton(floorTiles.get(spawnPositions.get(i)), gameLevel);
-            if (i == 1) {
-                skeleton.setHasKey(true);
-            }
             monsterList.add(skeleton);
             maze.updateOccupiedTilesMap(skeleton, skeleton.getPosX(), skeleton.getPosY());
         }
+        monsterList.get(1).setKey(true);
     }
 
     public void drawMonsters(Graphics graphics) {
         for (Monster monster : monsterList) {
             monster.drawSprite(graphics);
         }
-    }
-
-    public void removeMonsterFromMonsterList(Monster monster) {
-        monsterList.remove(monster);
-    }
-
-    public Monster getFightingMonster() {
-        for (int i = 0; i < monsterCount; i++) {
-            if (monsterList.get(i).isFighting()) {
-                return monsterList.get(i);
-            }
-        }
-        return null;
-    }
-
-    public boolean isBossDead() {
-        for (Monster monster : monsterList) {
-            if (monster instanceof Boss) {
-                return false;
-            }
-        }
-        return true;
     }
 
     public void animateMonsters(Board board) {
@@ -95,5 +71,31 @@ public class Monsters extends Sprite {
         };
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(timerTask, 1000L, 1000L);
+    }
+
+    public Monster getFightingMonster() {
+        for (int i = 0; i < monsterCount; i++) {
+            if (monsterList.get(i).isFighting()) {
+                return monsterList.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void removeMonsterFromMonsterList(Monster monster) {
+        monsterList.remove(monster);
+    }
+
+    public boolean isBossDead() {
+        for (Monster monster : monsterList) {
+            if (monster instanceof Boss) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void purgeMonsterList() {
+        monsterList.clear();
     }
 }

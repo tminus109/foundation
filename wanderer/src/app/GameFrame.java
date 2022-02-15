@@ -3,7 +3,7 @@ package app;
 import javax.swing.JFrame;
 
 public class GameFrame extends JFrame {
-    public GameFrame(Board board) {
+    GameFrame(Board board) {
         this.add(board);
         this.addKeyListener(board.getKeyHandler());
         this.setTitle("Wanderer Game");

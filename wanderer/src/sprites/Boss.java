@@ -12,9 +12,9 @@ public class Boss extends Monster {
         this.savedY = posY;
         this.image = new PositionedImage(file, posX * tile, posY * tile);
         this.level = gameLevel;
-        this.maxHP = 2 * gameLevel * rollDice() + rollDice();
+        this.maxHP = 2 * gameLevel * rollDie() + rollDie();
         this.HP = maxHP;
-        this.DP = gameLevel * rollDice() + rollDice() / 2;
-        this.SP = gameLevel * rollDice() + gameLevel;
+        this.DP = gameLevel * rollDie() + rollDie() / 2;
+        this.SP = gameLevel * rollDie() + gameLevel;
     }
 }

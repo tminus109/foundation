@@ -1,7 +1,7 @@
 Build a hero based walking on tiles and killing monsters type of board.
 The hero is controlled in a maze using the keyboard.
 Heroes and monsters have levels and stats depending on their levels.
-The goal is reach the highest level
+The goal is to reach the highest level
 by killing the monsters holding the keys to the next level.
 
 Plan your work.
@@ -45,7 +45,7 @@ graphics.fillRect(testBoxX, testBoxY, 100, 100);
 Here you have a 720x720 canvas.
 You can create and draw an image using the class below e.g.:
 
-PositionedImage image = new PositionedImage("yourimage.png", 300, 300);
+PositionedImage image = new PositionedImage("your_image.png", 300, 300);
 image.draw(graphics);
 
 public static void main(String[] args) {
@@ -67,7 +67,6 @@ frame.addKeyListener(gameFrame);
 
 Notice (at the top) that we can only do this
 because this Board class (the type of the gameFrame object) is also a KeyListener.
-
 }
 
 To be a KeyListener, the class needs to have these 3 methods in it:

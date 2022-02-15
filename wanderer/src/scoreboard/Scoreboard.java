@@ -11,9 +11,18 @@ public class Scoreboard implements Grid {
     public Scoreboard() {
         this.message = """
                 Hello Wanderer,
+                                
                 Find the key and defeat the Boss to get to the next level.
                 Attack a monster by trying to run over it.
                 Careful, monsters can attack you, too!""";
+    }
+
+    public int calculateLineCount() {
+        int lineCount = 0;
+        for (String ignored : message.split("\n")) {
+            lineCount++;
+        }
+        return lineCount;
     }
 
     public void drawMessage(Graphics graphics) {
@@ -27,18 +36,6 @@ public class Scoreboard implements Grid {
             posX = (width - stringWidth) / 2;
             graphics.drawString(line, posX, posY += lineHeight);
         }
-    }
-
-    public int calculateLineCount() {
-        int lineCount = 0;
-        for (String ignored : message.split("\n")) {
-            lineCount++;
-        }
-        return lineCount;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public void setVictoryMessage(Sprite winner, boolean isBossDead) {
@@ -61,15 +58,17 @@ public class Scoreboard implements Grid {
             } else if (!winner.hasKey() && isBossDead) {
                 setMessage("""
                         You've won!
-                        The Boss is dead already but you haven't found the key yet.
+                        The Boss is dead but you haven't found the key yet.
                         Where could it be?""");
             }
         } else if (winner instanceof Boss || winner instanceof Skeleton) {
-            setMessage("""
-                    This monster was stronger than you and I'm afraid you died.
-                    Better luck next time.
-
-                    GAME OVER!""");
+            setMessage("I'm afraid, the last monster was stronger than you and you died.\n" +
+                    "You made it to level " + winner.getLevel() + ".\n\n" +
+                    "GAME OVER!");
         }
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

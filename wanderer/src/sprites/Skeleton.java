@@ -12,9 +12,9 @@ public class Skeleton extends Monster {
         this.savedY = posY;
         this.image = new PositionedImage(file, posX * tile, posY * tile);
         this.level = gameLevel;
-        this.maxHP = 2 * gameLevel * rollDice();
+        this.maxHP = 2 * gameLevel * rollDie();
         this.HP = maxHP;
-        this.DP = gameLevel * rollDice();
-        this.SP = gameLevel * rollDice();
+        this.DP = gameLevel * rollDie();
+        this.SP = gameLevel * rollDie();
     }
 }

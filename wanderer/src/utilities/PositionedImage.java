@@ -14,7 +14,7 @@ public class PositionedImage {
         this.posX = posX;
         this.posY = posY;
         try {
-            image = ImageIO.read(new File(filename));
+            this.image = ImageIO.read(new File(filename));
         } catch (IOException e) {
             e.printStackTrace();
         }
