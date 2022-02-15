@@ -135,23 +135,15 @@ every character is alive.
 Using Stream API write methods to perform the following exercises:
 
 - Return the name of the heaviest character (ignore characters whose mass/weight is unknown).
-  (Grievous)
+  (Jabba Desilijic Tiure)
 
 - Return the average height of male characters.
-  (179.237)
+  (185.8125)
 
 - Return the average height of female characters.
-  (165.471)
+  (169.35714285714286)
 
 - 💪 Return a map with the age distribution of the characters by gender
   (where the gender can be "male", "female" and "other").
   The age groups are: "below 21", "between 21 and 40", "above 40" and "unknown".
-  The result should be a Map<String, Map<String, Long>> or,
-  if you wish to be more precise Map<AgeGroup, Map<GenderGroup, Long>>.
-
-  {
-  ABOVE_40 = {FEMALE=6, MALE=20, OTHER=2},
-  BETWEEN_21_AND_40 = {FEMALE=1, MALE=5, OTHER=1},
-  BELOW_21 = {FEMALE=1, MALE=3, OTHER=1},
-  UNKNOWN = {FEMALE=11, MALE=34, OTHER=3}
-  }
+  The result should be a Map<String, Map<String, Long>>.

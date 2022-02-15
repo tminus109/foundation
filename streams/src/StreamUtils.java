@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -122,6 +123,95 @@ public class StreamUtils {
                 .collect(Collectors.toList());
     }
 
+    //    Exercise 12
+    public static String getNameOfHeaviestCharacter(String file) {
+        String heaviestChar = "";
+        try {
+            heaviestChar = Files.lines(Paths.get(file))
+                    .skip(1)
+                    .map(l -> l.replace(", ", ";"))
+                    .map(l -> l.replace(",", ""))
+                    .map(l -> l.split(";"))
+                    .filter(l -> !l[2].equals("unknown"))
+                    .sorted((a, b) -> (int) (Double.parseDouble(b[2]) - Double.parseDouble(a[2])))
+                    .limit(1)
+                    .map(l -> l[0])
+                    .collect(Collectors.joining());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return heaviestChar;
+    }
+
+    public static double getAverageHeightOfMales(String file) {
+        double averageHeightOfMales = 0;
+        try {
+            averageHeightOfMales = Files.lines(Paths.get(file))
+                    .skip(1)
+                    .map(l -> l.replace(", ", ";"))
+                    .map(l -> l.replace(",", ""))
+                    .map(l -> l.split(";"))
+                    .filter(l -> l[7].equals("male") && !l[1].equals("unknown"))
+                    .collect(Collectors.averagingDouble(l -> Double.parseDouble(l[1])));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return averageHeightOfMales;
+    }
+
+    public static double getAverageHeightOfFemales(String file) {
+        double averageHeightOfFemales = 0;
+        try {
+            averageHeightOfFemales = Files.lines(Paths.get(file))
+                    .skip(1)
+                    .map(l -> l.replace(", ", ";"))
+                    .map(l -> l.replace(",", ""))
+                    .map(l -> l.split(";"))
+                    .filter(l -> l[7].equals("female") && !l[1].equals("unknown"))
+                    .collect(Collectors.averagingDouble(l -> Double.parseDouble(l[1])));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return averageHeightOfFemales;
+    }
+
+    public static Map<String, Map<String, Long>> getGenderDistribution(String file) {
+        Map<String, Map<String, Long>> genderDistribution = new HashMap<>();
+        try {
+            genderDistribution = Files.lines(Paths.get(file))
+                    .skip(1)
+                    .map(l -> l.replace(", ", ";"))
+                    .map(l -> l.replace(",", ""))
+                    .map(l -> l.replace("BBY", ""))
+                    .map(l -> l.split(";"))
+                    .collect(Collectors.groupingBy(l -> {
+                                if (l[7].equals("male") || l[7].equals("female")) {
+                                    return l[7];
+                                } else {
+                                    return "other";
+                                }
+                            },
+                            Collectors.groupingBy(l -> {
+                                try {
+                                    if (Double.parseDouble(l[6]) < 21) {
+                                        return "below 21";
+                                    } else if (Double.parseDouble(l[6]) <= 40) {
+                                        return "between 21-40";
+                                    } else {
+                                        return "above 40";
+                                    }
+                                } catch (NumberFormatException e) {
+                                    return "unknown";
+                                }
+                            }, Collectors.counting())));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return genderDistribution;
+    }
+
     //    Main
     public static void main(String[] args) {
         //    Exercise 1
@@ -181,5 +271,12 @@ public class StreamUtils {
         String file = "assets/thor.txt";
         System.out.println(getWordFrequency(file));
         System.out.println(getMostCommonWordsDesc(file));
+
+        //    Exercise 12
+        String file2 = "assets/sw_characters.csv";
+        System.out.println(getNameOfHeaviestCharacter(file2));
+        System.out.println(getAverageHeightOfMales(file2));
+        System.out.println(getAverageHeightOfFemales(file2));
+        System.out.println(getGenderDistribution(file2));
     }
 }
