@@ -1,5 +1,3 @@
-import javax.xml.stream.events.Characters;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,6 +48,14 @@ public class StreamUtils {
                 .collect(Collectors.toList());
     }
 
+    //    Exercise 7
+    public static List<String> findStringsStartingWithSpecifiedChar(List<String> cities, char c) {
+        return cities.stream()
+                .filter(s -> s.charAt(0) == c)
+                .collect(Collectors.toList());
+    }
+
+
     public static void main(String[] args) {
         //    Exercise 1
         List<Integer> numbers = Arrays.asList(1, 3, -2, -4, -7, -3, -8, 12, 19, 6, 9, 10, 14);
@@ -73,5 +79,11 @@ public class StreamUtils {
         //    Exercise 6
         String s = "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Morbi nec mattis odio.";
         System.out.println(findUppercaseChars(s));
+
+        //    Exercise 7
+        List<String> cities = Arrays.asList("ROME", "LONDON", "NAIROBI", "CALIFORNIA", "ZURICH",
+                "NEW DELHI", "AMSTERDAM", "ABU DHABI", "PARIS");
+        System.out.println(findStringsStartingWithSpecifiedChar(cities, 'R'));
+        System.out.println(findStringsStartingWithSpecifiedChar(cities, 'N'));
     }
 }
