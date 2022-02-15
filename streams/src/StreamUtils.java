@@ -1,10 +1,11 @@
+import javax.xml.stream.events.Characters;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class StreamUtils {
-//    Exercise 1
-
+    //    Exercise 1
     public static List<Integer> findEvenNumbers(List<Integer> numbers) {
         return numbers.stream()
                 .filter(n -> n % 2 == 0)
@@ -12,7 +13,6 @@ public class StreamUtils {
     }
 
     //    Exercise 2
-
     public static List<Integer> squarePositiveNumbers(List<Integer> numbers) {
         return numbers.stream()
                 .filter(n -> n > 0)
@@ -20,16 +20,14 @@ public class StreamUtils {
                 .collect(Collectors.toList());
     }
 
-//    Exercise 3
-
+    //    Exercise 3
     public static List<Integer> findNumbersSquaredGreaterThan20(List<Integer> numbers) {
         return numbers.stream()
                 .filter(n -> n * n > 20)
                 .collect(Collectors.toList());
     }
 
-//    Exercise 4
-
+    //    Exercise 4
     public static double calculateAverageOfOddNumbers(List<Integer> numbers) {
         return numbers.stream()
                 .filter(n -> n % 2 != 0)
@@ -37,12 +35,19 @@ public class StreamUtils {
     }
 
     //    Exercise 5
-
     public static int calculateSumOfOddNumbers(List<Integer> numbers) {
         return numbers.stream()
                 .filter(n -> n % 2 != 0)
                 .mapToInt(n -> n)
                 .sum();
+    }
+
+    //    Exercise 6
+    public static List<Character> findUppercaseChars(String string) {
+        return string.chars()
+                .filter(Character::isUpperCase)
+                .mapToObj(i -> (char) i)
+                .collect(Collectors.toList());
     }
 
     public static void main(String[] args) {
@@ -64,5 +69,9 @@ public class StreamUtils {
         //    Exercise 5
         List<Integer> numbers4 = Arrays.asList(5, 9, 1, 2, 3, 7, 5, 6, 7, 3, 7, 6, 8, 5, 4, 9, 6, 2);
         System.out.println(calculateSumOfOddNumbers(numbers4));
+
+        //    Exercise 6
+        String s = "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Morbi nec mattis odio.";
+        System.out.println(findUppercaseChars(s));
     }
 }
