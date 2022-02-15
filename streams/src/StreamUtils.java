@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -75,7 +76,28 @@ public class StreamUtils {
                         Integer::sum));
     }
 
+    //    Exercise 10
+    public static List<Fox> findGreenFoxes(List<Fox> foxes) {
+        return foxes.stream()
+                .filter(fox -> fox.color.equals("green"))
+                .collect(Collectors.toList());
+    }
 
+    public static List<Fox> findGreenFoxesAgedLessThan5(List<Fox> foxes) {
+        return foxes.stream()
+                .filter(fox -> fox.color.equals("green") && fox.age < 5)
+                .collect(Collectors.toList());
+    }
+
+    public static Map<String, Integer> countFrequencyOfFoxesByColor(List<Fox> foxes) {
+        return foxes.stream()
+                .collect(toMap(
+                        Fox::getColor,
+                        v -> 1,
+                        Integer::sum));
+    }
+
+    //    Main
     public static void main(String[] args) {
         //    Exercise 1
         List<Integer> numbers = Arrays.asList(1, 3, -2, -4, -7, -3, -8, 12, 19, 6, 9, 10, 14);
@@ -115,5 +137,20 @@ public class StreamUtils {
         String string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
                 "sed do eiusmod tempor incididunt.";
         System.out.println(countFrequencyOfChars(string));
+
+        //    Exercise 10
+        List<Fox> foxes = new ArrayList<>(Arrays.asList(
+                new Fox("f1", "red", 1),
+                new Fox("f2", "blue", 2),
+                new Fox("f3", "yellow", 3),
+                new Fox("f4", "green", 4),
+                new Fox("f5", "black", 5),
+                new Fox("f6", "black", 6),
+                new Fox("f7", "green", 2),
+                new Fox("f8", "green", 10)));
+
+        System.out.println(findGreenFoxes(foxes).toString());
+        System.out.println(findGreenFoxesAgedLessThan5(foxes).toString());
+        System.out.println(countFrequencyOfFoxesByColor(foxes));
     }
 }
