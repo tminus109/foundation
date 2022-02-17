@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Exercise #</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<p>Select an account and raise balance by clicking on the Submit button.</p>
+<form th:action="@{/raise_balance}" method="post">
+    <label for="name"></label>
+    <select id="name" name="name">
+        <option th:each="bankAccount : ${bankAccounts}"
+                th:value="${bankAccount.name}"
+                th:text="${bankAccount.name}">
+        </option>
+    </select>
+    <button>Submit</button>
+</form>
+</body>
+</html>
