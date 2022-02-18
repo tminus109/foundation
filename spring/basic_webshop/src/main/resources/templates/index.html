@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Basic Webshop</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div id="header" th:include="header::header"></div>
+<div class="filter_buttons_div">
+    <form th:action="@{/only_available}" method="get">
+        <button class="filter_button">Only Available</button>
+    </form>
+    <form th:action="@{/cheapest_first}" method="get">
+        <button class="filter_button">Cheapest First</button>
+    </form>
+    <form th:action="@{/contains_nike}" method="get">
+        <button class="filter_button">Contains Nike</button>
+    </form>
+    <form th:action="@{/average_stock}" method="get">
+        <button class="filter_button">Average Stock</button>
+    </form>
+    <form th:action="@{/most_expensive}" method="get">
+        <button class="filter_button">Most Expensive Available</button>
+    </form>
+</div>
+<div class="search_div">
+    <form id="search_form" th:action="@{/search}" method="post">
+        <label for="search_input" hidden></label>
+        <input id="search_input" name="searchTerm" type="text"
+               placeholder="Search for something like Nike...">
+        <button id="standard_search_button" class="search_button">Search</button>
+    </form>
+</div>
+<div id="shop_items_table" th:include="shop_items::table"></div>
+<div class="footer">
+    <a href="/more_filters">More filters >></a>
+</div>
+</body>
+</html>

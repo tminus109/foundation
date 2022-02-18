@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>More Filters</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div id="header" th:include="header::header"></div>
+<div class="filter_buttons_div">
+    <form th:action="@{/filter_by_type/clothes & shoes}" method="get">
+        <button class="filter_button">Clothes & Shoes</button>
+    </form>
+    <form th:action="@{/filter_by_type/electronics}" method="get">
+        <button class="filter_button">Electronics</button>
+    </form>
+    <form th:action="@{/filter_by_type/beverages & snacks}" method="get">
+        <button class="filter_button">Beverages & Snacks</button>
+    </form>
+    <form th:action="@{/more_filters/euro}" method="get">
+        <button class="filter_button">Euro</button>
+    </form>
+    <form th:action="@{/more_filters}" method="get">
+        <button class="filter_button">Forint</button>
+    </form>
+</div>
+<div class="search_div">
+    <form id="search_form" th:action="@{/filter_by_price}" method="post">
+        <label for="search_input" hidden></label>
+        <input id="search_input" name="searchTerm" type="number"
+               placeholder="Search by price..." required>
+        <button class="search_button" th:name="category" th:value="above">Above</button>
+        <button class="search_button" th:name="category" th:value="below">Below</button>
+        <button class="search_button" th:name="category" th:value="exactly">Exactly</button>
+    </form>
+</div>
+<div id="shop_items_table" th:include="shop_items::table"></div>
+<div class="footer">
+    <a href="/webshop"><< Standard filters</a>
+</div>
+</body>
+</html>

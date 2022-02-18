@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Html Text</title>
+    <title>Average Stock</title>
     <link rel="stylesheet" th:href="@{/styles.css}"/>
     <meta charset="utf-8"/>
 </head>
 <body>
-<p th:text="${html_text}"></p>
-<p th:utext="${html_text}"></p>
+<div id="header" th:include="header::header"></div>
+<div>
+    <p th:text="'Average stock: ' + ${averageStock}"></p>
+</div>
 </body>
 </html>

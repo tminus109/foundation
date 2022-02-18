@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="shop_items_div" th:fragment="table">
+    <table>
+        <thead>
+        <tr>
+            <th class="name_column">Name</th>
+            <th class="type_column">Type</th>
+            <th class="description_column">Description</th>
+            <th class="price_column">Price</th>
+            <th class="quantity_column">In Stock</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="shopItem : ${shopItems}">
+            <td th:text="${shopItem.name}"></td>
+            <td th:text="${shopItem.type}"></td>
+            <td th:text="${shopItem.description}"></td>
+            <td th:if="${currency == null}"
+                th:text="${#numbers.formatDecimal(shopItem.price, 1, 'DEFAULT', 2,'DEFAULT')} + ' Ft'"></td>
+            <td th:if="${currency != null}"
+                th:text="${#numbers.formatDecimal(shopItem.price, 1, 'DEFAULT', 2,'DEFAULT')} + ' ' + ${currency}"
+                th:style="'text-align: center;'"></td>
+            <td th:text="${shopItem.quantityOfStock}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

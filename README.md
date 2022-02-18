@@ -1,9 +1,7 @@
-Fundamental coding concepts and the concept of object-oriented programming.
+Fundamental coding concepts - object-oriented programming.
 
 
-Java, Spring and JUnit (testing) frameworks.
-
-Unix commands, Git, MySQL.
+Java, Spring, JUnit.
 
 
 Green Fox Academy exercises and exams.
