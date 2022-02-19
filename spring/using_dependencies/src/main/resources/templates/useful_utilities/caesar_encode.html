@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Useful Utilities</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div>
+    <form th:action="@{/useful/caesar/encode}" method="post">
+        <label for="caesar_encode_text" hidden></label>
+        <input id="caesar_encode_text" name="text" type="text"
+               placeholder="Enter some text" required>
+        <label for="caesar_encode_number" hidden></label>
+        <input id="caesar_encode_number" name="number" type="number"
+               placeholder="Enter a positive whole number" required>
+        <button>Encode</button>
+    </form>
+</div>
+<div>
+    <p th:text="${code}"></p>
+</div>
+</body>
+</html>

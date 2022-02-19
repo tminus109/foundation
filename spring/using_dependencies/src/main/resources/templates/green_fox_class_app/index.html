@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Green Fox Class</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div>
+    <p th:text="'The current student count is: ' + ${studentCount}"></p>
+</div>
+<div class="links">
+    <a href="/gfa/list">Student List</a>
+    <a href="/gfa/add">Add New Student</a>
+    <a href="/gfa/check">Check Student</a>
+</div>
+</body>
+</html>

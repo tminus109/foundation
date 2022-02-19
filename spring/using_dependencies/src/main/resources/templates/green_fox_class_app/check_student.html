@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Green Fox Class</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div>
+    <form id="check_student_form" th:action="@{/gfa/check}" method="post">
+        <label for="check_student" hidden></label>
+        <input id="check_student" name="name" type="text"
+               placeholder="Enter name of student" required>
+        <button>Check</button>
+    </form>
+</div>
+<div>
+    <p th:text="${isInList}"></p>
+</div>
+</body>
+</html>

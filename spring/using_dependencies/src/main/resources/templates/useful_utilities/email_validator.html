@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Useful Utilities</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div>
+    <form id="email_form" th:action="@{/useful/email}" method="post">
+        <label for="email_input" hidden></label>
+        <input id="email_input" name="email" type="text"
+               placeholder="Enter an email address" required>
+        <button>Validate</button>
+    </form>
+</div>
+<div>
+    <p th:text="${result}" th:style="'color: ' + ${color} + ';'"></p>
+</div>
+</body>
+</html>
