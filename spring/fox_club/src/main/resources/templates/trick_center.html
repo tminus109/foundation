@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Programmer Fox Club | Trick Center</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div th:replace="navigation::navigation"></div>
+<div>
+    <h1>Trick Center</h1>
+    <p th:unless="${#lists.isEmpty(tricks)}">Go ahead, learn a few tricks.</p>
+    <p th:if="${#lists.isEmpty(tricks)}">Bravo! You know all the tricks there is to know : )</p>
+</div>
+<div>
+    <form th:unless="${#lists.isEmpty(tricks)}" th:action="|@{/trick_center}/?name=${fox.name}|" method="post">
+        <label for="trick">Available tricks: </label>
+        <select id="trick" name="trick">
+            <option th:each="trick : ${tricks}" th:value="${trick}" th:text="${trick.name}"></option>
+        </select>
+        <button>Learn Trick</button>
+    </form>
+</div>
+</body>
+</html>

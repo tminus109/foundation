@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="navigation_div" th:fragment="navigation">
+    <a th:href="|@{/}?name=${fox.name}|">Information</a>
+    <a th:href="|@{/nutrition_store}?name=${fox.name}|">Nutrition Store</a>
+    <a th:href="|@{/trick_center}?name=${fox.name}|">Trick Center</a>
+    <a th:href="|@{/action_history}?name=${fox.name}|">Action History</a>
+</div>
+</body>
+</html>

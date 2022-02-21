@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Programmer Fox Club | Nutrition Store</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div th:replace="navigation::navigation"></div>
+<div>
+    <h1>Nutrition Store</h1>
+    <p>Feed your pet.</p>
+</div>
+<div>
+    <form th:action="|@{/nutrition_store}/?name=${fox.name}|" method="post">
+        <label for="food">Food: </label>
+        <select id="food" name="food">
+            <option th:each="food : ${store.foods}" th:value="${food}" th:text="${food.name}"
+                    th:selected="${food.name}==${fox.food.getName()}"></option>
+        </select>
+        <label for="drink">Drink: </label>
+        <select id="drink" name="drink">
+            <option th:each="drink : ${store.drinks}" th:value="${drink}" th:text="${drink.name}"
+                    th:selected="${drink.name}==${fox.drink.getName()}"></option>
+        </select>
+        <button>Change</button>
+    </form>
+</div>
+</body>
+</html>

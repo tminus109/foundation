@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Programmer Fox Club</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div th:replace="navigation::navigation"></div>
+<div>
+    <img id="fox_img" th:src="@{/green_fox.png}" alt="Green Fox Image">
+    <p th:text="${fox}"></p>
+</div>
+<div>
+    <h2>Known tricks:</h2>
+    <ul th:each="trick : ${fox.tricks}">
+        <li th:text="${trick}"></li>
+    </ul>
+    <p th:if="${#lists.isEmpty(fox.tricks)}">You know no tricks yet. Go and learn some.</p>
+</div>
+<div>
+    <h2>Latest Actions:</h2>
+    <ul th:each="action : ${fox.reverseActions()}">
+        <li th:if="${actionStat.index < 5}" th:text="${action}"></li>
+    </ul>
+    <p th:if="${#lists.isEmpty(fox.actions)}">Your pet hasn't done anything yet.</p>
+</div>
+</body>
+</html>

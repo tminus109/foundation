@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Programmer Fox Club | Action History</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div th:replace="navigation::navigation"></div>
+<div>
+    <h1>Action History</h1>
+    <p th:if="${#lists.isEmpty(fox.actions)}">Your pet hasn't done anything, yet.</p>
+</div>
+<div>
+    <ul th:each="action : ${fox.reverseActions()}">
+        <li th:text="${action}"></li>
+    </ul>
+</div>
+</body>
+</html>
