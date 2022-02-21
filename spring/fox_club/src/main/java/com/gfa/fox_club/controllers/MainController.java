@@ -43,15 +43,13 @@ public class MainController {
 
     @PostMapping("/login")
     public String loginUser(@RequestParam String name) {
-        if (foxService.getFoxByName(name) == null) {
-            Fox fox = new Fox(name);
+        Fox fox = foxService.getFoxByName(name);
+        if (fox == null) {
+            fox = new Fox(name);
             foxService.addNewFox(fox);
             fox.addNewAction(new Action(" - New pet created, named " + name + "."));
-            fox.addNewAction(new Action(" - " + name + " logged in."));
-        } else {
-            Fox fox = foxService.getFoxByName(name);
-            fox.addNewAction(new Action(" - " + name + " logged in."));
         }
+        fox.addNewAction(new Action(" - " + name + " logged in."));
         return "redirect:/?name=" + name;
     }
 
