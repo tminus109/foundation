@@ -33,27 +33,28 @@ table {
 
 th, td {
   padding: 10px;
+  border: 1px solid grey;
   text-align: center;
 }
 
-#add_new_todo_link, button {
+#add_new_link, button {
   padding: 10px;
   border: none;
   border-radius: 3px;
   background-color: #62B47D;
-  color: #FFFFFF;
+  color: white;
   cursor: pointer;
 }
 
-#add_new_todo_link:hover, button:hover {
+#add_new_link:hover, button:hover {
   background-color: #31703C;
 }
 
-#add_new_todo_link:active, button:active {
+#add_new_link:active, button:active {
   background-color: #F5F2D3;
 }
 
-#add_new_todo_link {
+#add_new_link {
   display: block;
   text-align: center;
   text-decoration: none;
@@ -72,8 +73,9 @@ input {
   border: 1px solid grey;
 }
 
-th, td {
-  border: 1px solid grey;
+input[type="checkbox"] {
+  width: 44px;
+  height: 44px;
 }
 
 img {
@@ -81,7 +83,26 @@ img {
   margin: auto;
 }
 
-input[type="checkbox"] {
-  width: 44px;
-  height: 44px;
+.search_form {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.search_input {
+  width: 85%;
+}
+
+.search_button {
+  width: 10%;
+}
+
+select {
+  line-height: 24px;
+  padding:10px;
+}
+
+a {
+  color: green;
 }

@@ -10,13 +10,22 @@
     <h1>Edit Todo</h1>
 </div>
 <div>
-    <form th:action="@{|/todo/edit/${id}|}" th:object="${todo}" method="post">
+    <form th:action="@{|/todos/edit/${id}|}" th:object="${todo}" method="post">
         <label for="title">Title:</label>
         <input id="title" name="title" type="text" th:field="*{title}">
+        <label for="assignee">Assignee:</label>
+        <select id="assignee" name="assignee">
+            <option th:value="null">N/A</option>
+            <option th:each="assignee : ${assignees}" th:text="${assignee.name}" th:value="${assignee.id}"
+                    th:selected="${assignee.id} == ${todo.assignee?.id}">
+            </option>
+        </select>
+        <label for="due_date">Due Date:</label>
+        <input id="due_date" name="due_date" type="date" th:field="*{dueDate}">
         <label for="urgent">Urgent:</label>
         <input id="urgent" name="urgent" type="checkbox" th:field="*{urgent}">
         <label for="done">Done:</label>
-        <input id="done" name="" type="checkbox" th:field="*{done}">
+        <input id="done" name="done" type="checkbox" th:field="*{done}">
         <button>Update</button>
     </form>
 </div>

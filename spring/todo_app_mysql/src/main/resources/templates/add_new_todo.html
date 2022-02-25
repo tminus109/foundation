@@ -10,9 +10,9 @@
     <h1>Add New Todo</h1>
 </div>
 <div>
-    <form th:action="@{/todo/add}" method="post">
+    <form th:action="@{/todos/add}" method="post">
         <label for="title" hidden></label>
-        <input id="title" name="title" type="text" placeholder="Add new task" required>
+        <input id="title" name="title" type="text" placeholder="Add new task..." required>
         <button>Add</button>
     </form>
 </div>

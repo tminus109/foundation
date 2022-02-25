@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Todo Application</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div>
+    <h1>Todos</h1>
+</div>
+<div>
+    <form class="search_form" th:action="@{/todos/search}" method="post">
+        <label for="keyword" hidden></label>
+        <input class="search_input" id="keyword" name="keyword" type="text" placeholder="Search by title or assignee..."
+               required>
+        <button class="search_button"><img th:src="@{/search.svg}"></button>
+    </form>
+</div>
+<div>
+    <a id="add_new_link" th:href="@{/todos/add}">Add New Todo</a>
+</div>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Assignee</th>
+            <th>Date Created</th>
+            <th>Due Date</th>
+            <th>Urgent</th>
+            <th>Done</th>
+            <th>Delete</th>
+            <th>Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="todo : ${todos}">
+            <td th:text="${todo.id}"></td>
+            <td th:text="${todo.title}"></td>
+            <td><a th:href="${todo.assignee} ? @{|/assignees/todos_of_assignee/${todo.assignee.id}|}"
+                   th:text="${todo.assignee} ? ${todo.assignee.name} : 'N/A'"
+                   th:style="${todo.assignee == null} ? 'pointer-events: none; cursor: default; color: black; text-decoration: none;'"></a>
+            </td>
+            <td th:text="${#temporals.format(todo.dateCreated, 'yyyy-MM-dd')}"></td>
+            <td th:text="${todo.dueDate} ? ${#temporals.format(todo.dueDate, 'yyyy-MM-dd')} : 'N/A'"></td>
+            <td th:text="${todo.urgent} ? 'yes' : 'no'"></td>
+            <td th:text="${todo.done} ? 'yes' : 'no'"></td>
+            <td><a th:href="@{|/todos/delete/${todo.id}|}"><img th:src="@{/trash.svg}" alt="Trash Icon"></a></td>
+            <td><a th:href="@{|/todos/edit/${todo.id}|}"><img th:src="@{/edit.svg}" alt="Edit Icon"></a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <a th:href="@{/assignees/}">List of Assignees</a>
+</div>
+</body>
+</html>

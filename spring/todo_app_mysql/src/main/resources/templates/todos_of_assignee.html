@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Todo Application | Todos of Assignee</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div>
+    <h1>Todos of Assignee</h1>
+</div>
+<div>
+    <p th:text="'ID: ' + ${assignee.id}"></p>
+    <p th:text="'Name: ' + ${assignee.name}"></p>
+</div>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Date Created</th>
+            <th>Due Date</th>
+            <th>Urgent</th>
+            <th>Done</th>
+            <th>Delete</th>
+            <th>Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="todo : ${assignee.todos}">
+            <td th:text="${todo.id}"></td>
+            <td th:text="${todo.title}"></td>
+            <td th:text="${#temporals.format(todo.dateCreated, 'yyyy-MM-dd')}"></td>
+            <td th:text="${todo.dueDate} ? ${#temporals.format(todo.dueDate, 'yyyy-MM-dd')} : 'N/A'"></td>
+            <td th:text="${todo.urgent} ? 'yes' : 'no'"></td>
+            <td th:text="${todo.done} ? 'yes' : 'no'"></td>
+            <td><a th:href="@{|/todos/delete/${todo.id}|}"><img th:src="@{/trash.svg}" alt="Trash Icon"></a></td>
+            <td><a th:href="@{|/todos/edit/${todo.id}|}"><img th:src="@{/edit.svg}" alt="Edit Icon"></a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
