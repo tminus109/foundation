@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reddit | Register</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <meta charset="UTF-8">
+</head>
+<body>
+<div>
+    <h1>Register</h1>
+</div>
+<div>
+    <form th:action="@{/reddit/register}" th:object="${user}" method="post">
+        <label for="username"></label>
+        <input id="username" type="text" th:field="*{username}" placeholder="Username..." required>
+        <label for="password"></label>
+        <input id="password" type="text" th:field="*{password}" placeholder="Password..." required>
+        <button>Register</button>
+    </form>
+</div>
+<div>
+    <p th:text="${message} ? ${message}" th:style="'color: red;'"></p>
+</div>
+</body>
+</html>

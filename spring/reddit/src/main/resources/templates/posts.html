@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reddit | Trending Posts</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div>
+    <h1>Trending Posts</h1>
+</div>
+<div>
+    <a id="add_new_link" th:href="@{/reddit/add_post}">Submit a new post</a>
+</div>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date Created</th>
+            <th>Score</th>
+            <th>Like</th>
+            <th>Dislike</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="post : ${posts}">
+            <td id="title" th:text="${post.title}"></td>
+            <td th:text="${#temporals.format(post.dateCreated, 'yyyy-MM-dd')}"></td>
+            <td th:text="${post.score}"></td>
+            <td id="thumbs_up"><a th:href="@{|/reddit/like/${post.id}|}">
+                <img th:src="${loggedUser.doesUserLikePost(post)} ? @{/thumbs_up_fill.svg} : @{/thumbs_up_empty.svg}"
+                     alt="Thumbs Up"/>
+            </a></td>
+            <td id="thumbs_down"><a th:href="@{|/reddit/dislike/${post.id}|}">
+                <img th:src="${loggedUser.doesUserDislikePost(post)} ? @{/thumbs_down_fill.svg} : @{/thumbs_down_empty.svg}"
+                     alt="Thumbs Up"/>
+            </a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
