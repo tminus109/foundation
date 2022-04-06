@@ -16,18 +16,18 @@
     <table>
         <thead>
         <tr>
+            <th>Score</th>
             <th>Title</th>
             <th>Date Created</th>
-            <th>Score</th>
             <th>Like</th>
             <th>Dislike</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="post : ${posts}">
-            <td id="title" th:text="${post.title}"></td>
-            <td th:text="${#temporals.format(post.dateCreated, 'yyyy-MM-dd')}"></td>
             <td th:text="${post.score}"></td>
+            <td id="title"><a th:text="${post.title}" th:href="${post.url}" target="_blank"></a></td>
+            <td th:text="${#temporals.format(post.dateCreated, 'yyyy-MM-dd')}"></td>
             <td id="thumbs_up"><a th:href="@{|/reddit/like/${post.id}|}">
                 <img th:src="${loggedUser.doesUserLikePost(post)} ? @{/thumbs_up_fill.svg} : @{/thumbs_up_empty.svg}"
                      alt="Thumbs Up"/>
