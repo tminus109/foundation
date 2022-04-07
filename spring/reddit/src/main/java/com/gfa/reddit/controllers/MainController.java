@@ -24,12 +24,21 @@ public class MainController {
 
     @GetMapping("/")
     public String showPosts(Model model) {
+        return viewPages(model, 1);
+    }
+
+    @RequestMapping("/page/{pageNumber}")
+    public String viewPages(Model model,
+                            @PathVariable int pageNumber) {
         if (loggedUserId == 0) {
             return "redirect:/reddit/login";
+        } else {
+            model.addAttribute("currentPage", pageNumber);
+            model.addAttribute("totalPages", postService.listAll(pageNumber).getTotalPages());
+            model.addAttribute("posts", postService.listAll(pageNumber).getContent());
+            model.addAttribute("loggedUser", userService.getUserById(loggedUserId));
+            return "posts";
         }
-        model.addAttribute("posts", postService.getPosts());
-        model.addAttribute("loggedUser", userService.getUserById(loggedUserId));
-        return "posts";
     }
 
     @GetMapping("/register")
@@ -42,7 +51,7 @@ public class MainController {
     public String addNewUser(@ModelAttribute User user,
                              Model model) {
         if (userService.isUsernameAvailable(user.getUsername())) {
-            userService.saveNewUser(user);
+            userService.addNewUser(user);
             return "redirect:/reddit/login";
         } else {
             model.addAttribute("message", "Username is not available!");

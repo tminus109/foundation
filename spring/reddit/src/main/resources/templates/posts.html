@@ -28,17 +28,45 @@
             <td th:text="${post.score}"></td>
             <td id="title"><a th:text="${post.title}" th:href="${post.url}" target="_blank"></a></td>
             <td th:text="${#temporals.format(post.dateCreated, 'yyyy-MM-dd')}"></td>
-            <td id="thumbs_up"><a th:href="@{|/reddit/like/${post.id}|}">
-                <img th:src="${loggedUser.doesUserLikePost(post)} ? @{/thumbs_up_fill.svg} : @{/thumbs_up_empty.svg}"
-                     alt="Thumbs Up"/>
-            </a></td>
-            <td id="thumbs_down"><a th:href="@{|/reddit/dislike/${post.id}|}">
-                <img th:src="${loggedUser.doesUserDislikePost(post)} ? @{/thumbs_down_fill.svg} : @{/thumbs_down_empty.svg}"
-                     alt="Thumbs Up"/>
-            </a></td>
+            <td id="thumbs_up">
+                <a th:href="@{|/reddit/like/${post.id}|}">
+                    <img th:src="${loggedUser.doesUserLikePost(post)} ? @{/thumbs_up_fill.svg} : @{/thumbs_up_empty.svg}"
+                         alt="Thumbs Up"/>
+                </a>
+            </td>
+            <td id="thumbs_down">
+                <a th:href="@{|/reddit/dislike/${post.id}|}">
+                    <img th:src="${loggedUser.doesUserDislikePost(post)} ? @{/thumbs_down_fill.svg} : @{/thumbs_down_empty.svg}"
+                         alt="Thumbs Up"/>
+                </a>
+            </td>
         </tr>
         </tbody>
     </table>
+</div>
+<div id="page_navigation">
+    <div id="first">
+        <p><a th:if="${currentPage > 1}" th:href="@{'/reddit/page/' + ${1}}">First</a></p>
+        <span th:unless="${currentPage > 1}" style="color: DimGrey;">First</span>
+    </div>
+    <div id="previous">
+        <p><a th:if="${currentPage > 1}" th:href="@{'/reddit/page/' + ${currentPage - 1}}">Previous</a></p>
+        <span th:unless="${currentPage > 1}" style="color: DimGrey;">Previous</span>
+    </div>
+    <div id="each_page">
+        <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+            <a th:if="${currentPage != i}" th:href="@{'/reddit/page/' + ${i}}">[[${i}]]</a>
+            <span th:unless="${currentPage != i}" style="color: DimGrey;">[[${i}]]</span>
+        </span>
+    </div>
+    <div id="next">
+        <p><a th:if="${currentPage < totalPages}" th:href="@{'/reddit/page/' + ${currentPage + 1}}">Next</a></p>
+        <span th:unless="${currentPage < totalPages}" style="color: DimGrey;">Next</span>
+    </div>
+    <div id="last">
+        <p><a th:if="${currentPage < totalPages}" th:href="@{'/reddit/page/' + ${totalPages}}">Last</a></p>
+        <span th:unless="${currentPage < totalPages}" style="color: DimGrey;">Last</span>
+    </div>
 </div>
 </body>
 </html>

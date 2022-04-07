@@ -75,3 +75,26 @@ img {
   display: block;
   margin: auto;
 }
+
+#page_navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 50%;
+}
+
+a:link {
+  color: #215CB5;
+}
+
+a:hover {
+  color: #5995DA;
+}
+
+a:active {
+  color: #215CB5;
+}
