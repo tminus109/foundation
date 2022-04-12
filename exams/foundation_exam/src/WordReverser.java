@@ -1,5 +1,3 @@
-package foundation_exam;
-
 public class WordReverser {
     static String reverseWords(String sentence) {
         StringBuilder stringBuilder = new StringBuilder();

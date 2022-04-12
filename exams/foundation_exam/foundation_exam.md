@@ -58,10 +58,10 @@ Example: responses.txt.
 Output:
 
 {
-    "matReview": 2.25,
-    "presSkills": 4.0, // or 4 is fine as well
-    "helpfulness": 4.5,
-    "explanations": 3.75
+"matReview": 2.25,
+"presSkills": 4.0, // or 4 is fine as well
+"helpfulness": 4.5,
+"explanations": 3.75
 }
 
 
@@ -117,7 +117,7 @@ It takes two parameters: guest and video.
 It throws error/exception with descriptive message if the following happens:
 - the guest already has a video borrowed,
 - the video is currently not available.
-Otherwise, sets the video status to "borrowed", assigns the video to the guest.
+  Otherwise, sets the video status to "borrowed", assigns the video to the guest.
 
 It has a returnVideo() method where you can return the video back to the store.
 It takes one parameter: guest.

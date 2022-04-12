@@ -1,5 +1,3 @@
-package foundation_exam;
-
 public class Main {
     public static void main(String[] args) throws Exception {
         VideoStore videoStore = new VideoStore();

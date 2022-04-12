@@ -1,5 +1,3 @@
-package foundation_exam;
-
 public abstract class Video implements Cloneable {
     String title;
     String director;

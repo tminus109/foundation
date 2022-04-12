@@ -1,5 +1,3 @@
-package foundation_exam;
-
 public class GrayScaleVideo extends Video {
     GrayScaleVideo(String title, String director, int year) {
         super(title, director, year);
