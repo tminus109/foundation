@@ -20,7 +20,7 @@ public class AppendAController {
 
     @GetMapping("/appenda/{appendable}")
     public ResponseEntity<?> appendInput(@PathVariable String appendable) {
-        logService.newLogEntry("/appenda", "input=" + appendable);
+        logService.newLogEntry("/appenda/{appendable}", "input=" + appendable);
         if (appendable == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
