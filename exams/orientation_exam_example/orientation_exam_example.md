@@ -1,4 +1,4 @@
-URL Aliaser:
+URL Aliaser
 
 We are going to create something like a URL-shortening application.
 We are not going to struggle with random strings,
@@ -14,12 +14,12 @@ The main page has 3 scenarios.
 Default:
 
 - The main page should be rendered.
-- It should contain a form with two labels, two input fields and a submit button.
-- The form should be submitted to `POST /save-link`.
+- It should contain a form with two input fields and a submit button.
+- The form should be submitted to `POST /save_link`.
 
 Success:
 
-- It should show the message "Your URL is aliased to {alias}
+- It should show the message "Your URL is aliased to {urlAlias}
   and your secret code is {secret code}."
 - It should clear the input fields.
 
@@ -29,7 +29,7 @@ Error:
 - It should show the message "Your alias is already in use!".
 - It should not clear the input fields.
 
-POST /save-link:
+POST /save_link:
 
 - If the alias is already in use redirect to the main page with the error scenario.
 - Else:
@@ -39,7 +39,7 @@ POST /save-link:
 
 GET /a/{alias}:
 
-- If the alias exists it should increment the hit count and redirect to the URL,
+- If the urlAlias exists it should increment the hit count and redirect to the URL,
   otherwise respond with 404 status code.
 
 GET /api/links:
@@ -51,13 +51,13 @@ GET /api/links:
   {
   "id": 0,
   "url": "http://reddit.com",
-  "alias": "bye-bye-time",
+  "urlAlias": "bye-bye-time",
   "hitCount": 0
   },
   {
   "id": 1,
   "url": "http://youtube.com",
-  "alias": "watch-videos",
+  "urlAlias": "watch-videos",
   "hitCount": 4
   }
   ]
@@ -99,3 +99,5 @@ Given the following table named `applicants`:
 
 - Write an SQL query to select the name of the 5 youngest applicants
   from the Czech Republic.
+
+SELECT name FROM applicants WHERE country = "Czech Republic" ORDER BY age ASC LIMIT 5;
