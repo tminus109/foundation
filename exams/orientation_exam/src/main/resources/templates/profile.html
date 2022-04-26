@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${currentUser.username}"></title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <meta charset="UTF-8">
+</head>
+<body>
+<div>
+    <h1 th:text="${randomUser.username}"></h1>
+    <p th:text="${randomUser.age} + '-year-old ' + ${randomUser.gender} + '.'"></p>
+    <p th:text="${randomUser.description}"></p>
+</div>
+<div>
+    <form th:action="@{/swipe}" th:object="${swipe}" method="post">
+        <label for="currentUserId"></label>
+        <input id="currentUserId" name="currentUserId" type="number" th:value="${currentUser.id}" hidden>
+        <label for="randomUserId"></label>
+        <input id="randomUserId" name="randomUserId" type="number" th:value="${randomUser.id}" hidden>
+        <fieldset>
+            <label for="left">Left</label>
+            <input id="left" name="swipeDirection" type="radio" value="left" required>
+            <input id="right" name="swipeDirection" type="radio" value="right" required>
+            <label for="right">Right</label>
+        </fieldset>
+        <button type="submit">Swipe</button>
+    </form>
+</div>
+</body>
+</html>

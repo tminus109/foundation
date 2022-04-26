@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tinder Clone | Register</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <meta charset="UTF-8">
+</head>
+<body>
+<div>
+    <h1>Register</h1>
+</div>
+<div>
+    <form th:action="@{/register}" th:object="${user}" method="post">
+        <label for="username">Username:</label>
+        <input id="username" name="username" type="text" th:field="*{username}" required>
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" th:field="*{gender}" required>
+            <option th:value="female" th:text="female"></option>
+            <option th:value="male" th:text="male"></option>
+        </select>
+        <label for="age">Age:</label>
+        <input id="age" name="age" type="number" min="18" th:field="*{age}" required>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" th:field="*{description}"
+                  rows="6" cols="24" required></textarea>
+        <button type="submit">Register</button>
+    </form>
+</div>
+<div th:if="${message}">
+    <p th:text="${message}"></p>
+</div>
+</body>
+</html>
