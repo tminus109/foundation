@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class P2pChatApplicationTests {
+class P2PChatApplicationTests {
 
 	@Test
 	void contextLoads() {
