@@ -52,10 +52,10 @@ any other cases it should print both error and info level messages.
 Read the logs in Heroku: https://devcenter.heroku.com/articles/logging
 
 
-Client id, Peer address:
+[comment]: <> (Client id, Peer address:)
 
-Each application should store a unique id (string), that is different from any other.
-Please use your GitHub username for this purpose.
+[comment]: <> (Each application should store a unique id &#40;string&#41;, that is different from any other.)
+[comment]: <> (Please use your GitHub username for this purpose.)
 
 [comment]: <> (Each application should store an IP address of another application that it will connect to.)
 [comment]: <> (This is the address where your application forwards the created or received chat messages.)
@@ -69,7 +69,8 @@ Create a new page at the /register path.
 If the "Enter" button is clicked, it should create a new user in the database and redirect to the main page.
 If the username is not specified, it should show an error on the top of the page: "The username field is empty".
 
-At this point we handle only one user for the application:
+[comment]: <> (At this point we handle only one user for the application :)
+
 The Register page should redirect to the Main page if 1 user is present in the database.
 The Main page should redirect to the Register page if 1 user is not present in the database.
 
