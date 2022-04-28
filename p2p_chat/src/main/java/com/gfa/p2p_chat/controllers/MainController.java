@@ -21,10 +21,12 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public String showIndex(@RequestParam(required = false) String username) {
+    public String showIndex(@RequestParam(required = false) String username,
+                            Model model) {
         if (username == null || username.trim().isEmpty()) {
             return "redirect:/register";
         } else {
+            model.addAttribute("username", username);
             return "index";
         }
     }

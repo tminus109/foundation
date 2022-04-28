@@ -75,16 +75,14 @@ The Register page should redirect to the Main page if 1 user is present in the d
 The Main page should redirect to the Register page if 1 user is not present in the database.
 
 
-Main page:
+[comment]: <> (Main page:)
 
-Create a form under the title that consists a text input and an update button.
-
-The text input should store the username of the user.
-If the update button is clicked, then it should update the username in your database
-(so we still have just 1 user in the database that you can modify).
-After the update, the application should stay or redirect back to this Main page.
-
-If the username is not specified it should show an error on the top of the page: "The username field is empty".
+[comment]: <> (Create a form under the title that consists a text input and an update button.)
+[comment]: <> (The text input should store the username of the user.)
+[comment]: <> (If the update button is clicked, then it should update the username in your database)
+[comment]: <> (&#40;so we still have just 1 user in the database that you can modify&#41;.)
+[comment]: <> (After the update, the application should stay or redirect back to this Main page.)
+[comment]: <> (If the username is not specified it should show an error on the top of the page: "The username field is empty".)
 
 
 Save new message:
