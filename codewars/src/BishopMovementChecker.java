@@ -1,29 +1,43 @@
-public class BishopMovementChecker {
-    public static boolean bMC(String start, String end, int moves) {
-        int startCharacter = Character.getNumericValue(start.charAt(0));
-        int startNumber = Character.getNumericValue(start.charAt(1));
-        int endCharacter = Character.getNumericValue(end.charAt(0));
-        int endNumber = Character.getNumericValue(end.charAt(1));
+import java.util.Objects;
 
-        if (start.equals(end)) {
+public class BishopMovementChecker {
+    public static boolean checkMoves(String startPos, String endPos, int moves) {
+        if (Objects.equals(startPos, endPos)) {
             return true;
-        } else if (moves == 0) {
-            return false;
-        } else if (moves >= 2) {
-            return (startNumber % 2 != 0 || endNumber % 2 == 0) &&
-                    (startNumber % 2 == 0 || endNumber % 2 != 0);
-        } else if (moves == 1) {
-            return startCharacter + endCharacter == startNumber + endNumber ||
-                    Math.abs(startCharacter - endCharacter) == Math.abs(startNumber - endNumber);
         }
+
+        if (moves == 0) {
+            return false;
+        }
+
+        int startChar = startPos.charAt(0);
+        int startNum = Character.getNumericValue(startPos.charAt(1));
+        int endChar = endPos.charAt(0);
+        int endNum = Character.getNumericValue(endPos.charAt(1));
+
+        if (moves == 1) {
+            return Math.abs(startChar - endChar) == Math.abs(startNum - endNum);
+        }
+
+        if (moves > 1) {
+            return (Math.abs(startChar - endChar) + Math.abs(startNum - endNum)) % 2 == 0;
+        }
+
         return false;
     }
 
     public static void main(String[] args) {
-        String start = "a1";
-        String end = "c1";
-        int moves = 2;
-
-        System.out.println(bMC(start, end, moves));
+        System.out.println(checkMoves("a1", "c1", 2));
+        System.out.println(checkMoves("a1", "c1", 1));
+        System.out.println(checkMoves("a1", "a1", 0));
+        System.out.println(checkMoves("a1", "c1", 0));
+        System.out.println(checkMoves("d4", "d5", 2));
+        System.out.println(checkMoves("d4", "d8", 22));
+        System.out.println(checkMoves("d4", "a7", 1));
+        System.out.println(checkMoves("d4", "c4", 1));
+        System.out.println(checkMoves("d4", "a5", 2));
+        System.out.println(checkMoves("a1", "g2", 2));
+        System.out.println(checkMoves("a1", "g1", 2));
+        System.out.println(checkMoves("d4", "a3", 3));
     }
 }
