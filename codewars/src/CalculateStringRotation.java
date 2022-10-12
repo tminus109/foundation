@@ -1,50 +1,36 @@
 public class CalculateStringRotation {
-    public static int calculateStringRotation(String s0, String s1) {
-        int output = -1;
-
-        if (s0.length() != s1.length()) {
+    public static int calculateStringRotation(String string1, String string2) {
+        if (string1.length() != string2.length()) {
             return -1;
         }
 
-        StringBuilder sb = new StringBuilder();
+        if (string1.equals(string2)) {
+            return 0;
+        }
 
-        for (int i = 0; i < s0.length(); i++) {
-            if (s0.charAt(0) == s1.charAt(i)) {
-                output = i;
-                sb.append(s0.substring(s0.length() - i)).append(s0.substring(0, s0.length() - i));
-                break;
+        for (int i = 0, l = string1.length(); i < l; i++) {
+            if (string1.charAt(i) == string2.charAt(0)) {
+                String substring1 = string1.substring(i);
+                String substring2 = string1.substring(0, i);
+                if (substring1.concat(substring2).equals(string2)) {
+                    return substring1.length();
+                }
             }
         }
 
-        if (sb.toString().equals(s1)) {
-            return output;
-        } else {
-            return -1;
-        }
+        return -1;
     }
 
     public static void main(String[] args) {
-        String s0 = "fatigue";
-        String s1 = "tiguefa";
-        String s2 = "coffee";
-        String s3 = "eecoff";
-        String s4 = "eecoff";
-        String s5 = "coffee";
-        String s6 = "moose";
-        String s7 = "Moose";
-        String s8 = "isn't";
-        String s9 = "'tisn";
-        String s10 = "Esham";
-        String s11 = "Esham";
-        String s12 = "dog";
-        String s13 = "god";
-
-        System.out.println(calculateStringRotation(s0, s1));
-        System.out.println(calculateStringRotation(s2, s3));
-        System.out.println(calculateStringRotation(s4, s5));
-        System.out.println(calculateStringRotation(s6, s7));
-        System.out.println(calculateStringRotation(s8, s9));
-        System.out.println(calculateStringRotation(s10, s11));
-        System.out.println(calculateStringRotation(s12, s13));
+        System.out.println(calculateStringRotation("fatigue", "tiguefa"));
+        System.out.println(calculateStringRotation("coffee", "eecoff"));
+        System.out.println(calculateStringRotation("eecoff", "coffee"));
+        System.out.println(calculateStringRotation("moose", "Moose"));
+        System.out.println(calculateStringRotation("isn't", "'tisn"));
+        System.out.println(calculateStringRotation("Esham", "Esham"));
+        System.out.println(calculateStringRotation("Esham", "esham"));
+        System.out.println(calculateStringRotation("dog", "god"));
+        System.out.println(calculateStringRotation("mami", "mima"));
+        System.out.println(calculateStringRotation("m", "mmm"));
     }
 }
