@@ -2,10 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CharacterWithLongestConsecutiveRepetition {
-    public static List<Object> findCharacter(String s) {
+    public static List<Object> findChar(String s) {
         List<Object> output = new ArrayList<>();
+        int length = s.length();
 
-        if (s.length() == 0) {
+        if (length == 0) {
             output.add("\"\"");
             output.add(0);
             return output;
@@ -14,17 +15,18 @@ public class CharacterWithLongestConsecutiveRepetition {
         char c = s.charAt(0);
         int l = 1;
 
-        for (int i = 0; i < s.length() - 1; i++) {
+        for (int i = 0; i < length - 1; i++) {
+            char ch = s.charAt(i);
             int count = 1;
-            for (int j = (i + 1); j < s.length(); j++) {
-                if (s.charAt(j) == s.charAt(i)) {
+
+            for (int j = (i + 1); j < length; j++) {
+                if (s.charAt(j) == ch) {
                     count++;
-                } else {
-                    break;
                 }
             }
+
             if (count > l) {
-                c = s.charAt(i);
+                c = ch;
                 l = count;
             }
         }
@@ -36,10 +38,10 @@ public class CharacterWithLongestConsecutiveRepetition {
     }
 
     public static void main(String[] args) {
-        String input1 = "abbcccdddeeeffffafffff";
-        String input2 = "";
-
-        System.out.println(findCharacter(input1));
-        System.out.println(findCharacter(input2));
+        System.out.println(findChar("alallaamdgg"));
+        System.out.println(findChar("abcaba"));
+        System.out.println(findChar("abcabab"));
+        System.out.println(findChar("babcaba"));
+        System.out.println(findChar(""));
     }
 }
