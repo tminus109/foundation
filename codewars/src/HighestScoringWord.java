@@ -1,40 +1,37 @@
 import java.util.*;
 
 public class HighestScoringWord {
-    public static String highestScoringWord(String s) {
-        String theWord = "";
-        Map<Character, Integer> points = new HashMap<>();
-        int point = 0;
+    public static String findHighestScoringWord(String s) {
+        Map<Character, Integer> scoreOfEachWord = new HashMap<>();
+        int scoreOfLetter = 1;
 
         for (char ch = 'a'; ch <= 'z'; ch++) {
-            point++;
-            points.put(ch, point);
+            scoreOfEachWord.put(ch, scoreOfLetter);
+            scoreOfLetter++;
         }
 
         List<String> words = new ArrayList<>(Arrays.asList(s.split(" ")));
+        String highestScoringWord = "";
         int score = 0;
 
         for (String word : words) {
-            int temp = 0;
+            int tempScore = 0;
             for (int j = 0; j < word.length(); j++) {
-                temp += points.get(word.charAt(j));
+                tempScore += scoreOfEachWord.get(word.charAt(j));
             }
-            if (temp > score) {
-                score = temp;
-                theWord = word;
+            if (tempScore > score) {
+                score = tempScore;
+                highestScoringWord = word;
             }
         }
 
-        return theWord;
+        return highestScoringWord;
     }
 
     public static void main(String[] args) {
-        String s0 = "a aa b bb";
-        String s1 = "abc bca";
-        String s2 = "rrr aaa bbb ccc rrr fff";
-
-        System.out.println(highestScoringWord(s0));
-        System.out.println(highestScoringWord(s1));
-        System.out.println(highestScoringWord(s2));
+        System.out.println(findHighestScoringWord("a aa b bb"));
+        System.out.println(findHighestScoringWord("abc bca"));
+        System.out.println(findHighestScoringWord("rrr aaa bbb ccc rrr fff"));
+        System.out.println(findHighestScoringWord("polar black sun brown sloth andean panda"));
     }
 }
