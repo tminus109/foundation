@@ -2,35 +2,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PascalsTriangle {
-    public static List<Integer> pascalsTriangle(int depth, int init) {
+    public static List<Integer> getPascalsTriangle(int depth, int firstNum) {
+        if (depth < 1) {
+            return new ArrayList<>();
+        }
+
         List<Integer> triangle = new ArrayList<>();
-        int length = 1;
+        int rowLength = 1;
 
         for (int i = 0; i < depth; i++) {
-            for (int j = 0; j < length; j++) {
-                if (j == 0 || j == length - 1) {
-                    triangle.add(init);
+            for (int j = 0; j < rowLength; j++) {
+                if (j == 0 || j == (rowLength - 1)) {
+                    triangle.add(firstNum);
                 } else {
-                    triangle.add(triangle.get(triangle.size() - length) +
-                            triangle.get(triangle.size() - (length - 1)));
+                    triangle.add(
+                            triangle.get(triangle.size() - rowLength) +
+                                    triangle.get(triangle.size() - (rowLength - 1)));
                 }
             }
-            length++;
+            rowLength++;
         }
 
         return triangle;
     }
 
     public static void main(String[] args) {
-        int init = 1;
-        int depth0 = 1;
-        int depth1 = 2;
-        int depth2 = 4;
-        int depth4 = 7;
-
-        System.out.println(pascalsTriangle(depth0, init));
-        System.out.println(pascalsTriangle(depth1, init));
-        System.out.println(pascalsTriangle(depth2, init));
-        System.out.println(pascalsTriangle(depth4, init));
+        System.out.println(getPascalsTriangle(1, 1));
+        System.out.println(getPascalsTriangle(4, 1));
+        System.out.println(getPascalsTriangle(6, 2));
+        System.out.println(getPascalsTriangle(0, 1));
     }
 }

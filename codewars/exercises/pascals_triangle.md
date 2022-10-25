@@ -1,5 +1,5 @@
 In mathematics, Pascal's triangle is a triangular array of the binomial coefficients.
-You can read Wikipedia article on Pascal's Triangle for more information.
+You can read the Wikipedia article on Pascal's Triangle for more information.
 
 Task:
 Write a function that, given a depth n, returns n top rows of Pascal's Triangle
