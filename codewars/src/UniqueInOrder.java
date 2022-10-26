@@ -1,36 +1,37 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class UniqueInOrder {
-    public static List<Object> uniqueInOrder(List<Object> input) {
-        List<Object> output = new ArrayList<>();
-        List<Object> arr;
+    public static List<Object> getUniqueInOrder(Object input) {
+        List<Object> uniqueInOrder = new ArrayList<>();
+        Object[] arr = {};
 
-        if (input.size() == 1 && input.get(0) instanceof String) {
-            arr = Arrays.asList(((String) input.get(0)).split(""));
-        } else {
-            arr = input;
+        if (input instanceof String) {
+            arr = (((String) input).split(""));
+        } else if (input instanceof Object[]) {
+            arr = (Object[]) input;
         }
 
-        output.add(arr.get(0));
+        uniqueInOrder.add(arr[0]);
 
-        for (int i = 1; i < arr.size(); i++) {
-            if (!arr.get(i).equals(arr.get(i - 1))) {
-                output.add(arr.get(i));
+        int l = arr.length - 1;
+
+        for (int i = 0; i < l; i++) {
+            if (!arr[i + 1].equals(arr[i])) {
+                uniqueInOrder.add(arr[i + 1]);
             }
         }
 
-        return output;
+        return uniqueInOrder;
     }
 
     public static void main(String[] args) {
-        List<Object> uniqueInOrder1 = new ArrayList<>(List.of("AAAABBBCCDAABBB"));
-        List<Object> uniqueInOrder2 = new ArrayList<>(List.of("ABBCcAD"));
-        List<Object> uniqueInOrder3 = new ArrayList<>(Arrays.asList(1, 2, 2, 3, 3));
+        String uniqueInOrder = "AAAABBBCCDAABBB";
+        String uniqueInOrder2 = "ABBCcAD";
+        Integer[] uniqueInOrder3 = {1, 2, 2, 3, 3};
 
-        System.out.println(uniqueInOrder(uniqueInOrder1));
-        System.out.println(uniqueInOrder(uniqueInOrder2));
-        System.out.println(uniqueInOrder(uniqueInOrder3));
+        System.out.println(getUniqueInOrder(uniqueInOrder));
+        System.out.println(getUniqueInOrder(uniqueInOrder2));
+        System.out.println(getUniqueInOrder(uniqueInOrder3));
     }
 }
