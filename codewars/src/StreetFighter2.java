@@ -38,9 +38,9 @@ public class StreetFighter2 {
                 {"Ken", "Chun Li", "Zangief", "Dhalsim", "Sagat", "M.Bison"}
         };
         String[] moves = {"up", "left", "right", "left", "left"};
-        String[] moves1 = {"right", "down", "left", "left", "left", "left", "right"};
+        String[] moves2 = {"right", "down", "left", "left", "left", "left", "right"};
 
         System.out.println(getHoveredCharacters(fighters, moves));
-        System.out.println(getHoveredCharacters(fighters, moves1));
+        System.out.println(getHoveredCharacters(fighters, moves2));
     }
 }
