@@ -1,34 +1,28 @@
 public class AlternatingCharacters {
-    public static int alternatingCharacters(String s) {
-        int deletions = 0;
-        StringBuilder chars = new StringBuilder(s);
+    public static int getAlternatingChars(String s) {
+        int deletionCount = 0;
         int index = 0;
+        StringBuilder chars = new StringBuilder(s);
 
         for (int i = 0; i < chars.length() - 1; i++) {
             if (chars.charAt(index) ==
                     chars.charAt(index + 1)) {
                 chars.deleteCharAt(index);
-                deletions++;
+                deletionCount++;
                 i--;
             } else {
                 index++;
             }
         }
 
-        return deletions;
+        return deletionCount;
     }
 
     public static void main(String[] args) {
-        String s = "AAAA";
-        String s2 = "BBBBB";
-        String s3 = "ABABABAB";
-        String s4 = "BABABA";
-        String s5 = "AAABBB";
-
-        System.out.println(alternatingCharacters(s));
-        System.out.println(alternatingCharacters(s2));
-        System.out.println(alternatingCharacters(s3));
-        System.out.println(alternatingCharacters(s4));
-        System.out.println(alternatingCharacters(s5));
+        System.out.println(getAlternatingChars("AAAA"));
+        System.out.println(getAlternatingChars("BBBBB"));
+        System.out.println(getAlternatingChars("ABABABAB"));
+        System.out.println(getAlternatingChars("BABABA"));
+        System.out.println(getAlternatingChars("AAABBB"));
     }
 }

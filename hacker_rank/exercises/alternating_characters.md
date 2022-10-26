@@ -6,6 +6,7 @@ Your task is to find the minimum number of required deletions.
 Example:
 
 s = AABAAB
+
 Remove an A at positions 0 and 3 to make s = ABAB in 2 deletions.
 
 Function Description: complete the alternatingCharacters function.
@@ -22,24 +23,17 @@ The next q lines each contain a string s to analyze.
 Constraints:
 
 1 <=q <= 10
+
 1 <= length of s <= 10⁵
+
 Each string s will consist only of characters A and B.
 
-Sample Input:
+Sample Inputs:
 
-5
-AAAA
-BBBBB
-ABABABAB
-BABABA
-AAABBB
+AAAA BBBBB ABABABAB BABABA AAABBB
 
-Sample Output:
+Sample Outputs:
 
-3
-4
-0
-0
-4
+3 4 0 0 4
 
 https://www.hackerrank.com/challenges/alternating-characters/problem
