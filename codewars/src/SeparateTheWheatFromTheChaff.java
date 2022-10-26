@@ -1,35 +1,35 @@
 import java.util.Arrays;
 
 public class SeparateTheWheatFromTheChaff {
-    public static int[] separateWheatFromChaff(int[] chaff) {
-        int[] wheat = new int[chaff.length];
+    public static int[] separateWheatFromChaff(int[] wheatAndChaff) {
+        int[] wheatFromChaff = new int[wheatAndChaff.length];
         int head = 0;
-        int tail = chaff.length - 1;
+        int tail = wheatAndChaff.length - 1;
 
         while (head <= tail) {
-            if (chaff[head] < 0) {
-                wheat[head] = chaff[head];
+            if (wheatAndChaff[head] < 0) {
+                wheatFromChaff[head] = wheatAndChaff[head];
                 head++;
-            } else if (chaff[tail] > 0) {
-                wheat[tail] = chaff[tail];
+            } else if (wheatAndChaff[tail] > 0) {
+                wheatFromChaff[tail] = wheatAndChaff[tail];
                 tail--;
             } else {
-                wheat[tail] = chaff[head];
-                wheat[head] = chaff[tail];
+                wheatFromChaff[tail] = wheatAndChaff[head];
+                wheatFromChaff[head] = wheatAndChaff[tail];
                 head++;
                 tail--;
             }
         }
 
-        return wheat;
+        return wheatFromChaff;
     }
 
     public static void main(String[] args) {
-        int[] wheatAndChaff0 = {7, -8, 1, -2};
+        int[] wheatAndChaff = {7, -8, 1, -2};
         int[] wheatAndChaff1 = {-31, -5, 11, -42, -22, -46, -4, -28};
         int[] wheatAndChaff2 = {-25, -48, -29, -25, 1, 49, -32, -19, -46, 1};
 
-        System.out.println(Arrays.toString(separateWheatFromChaff(wheatAndChaff0)));
+        System.out.println(Arrays.toString(separateWheatFromChaff(wheatAndChaff)));
         System.out.println(Arrays.toString(separateWheatFromChaff(wheatAndChaff1)));
         System.out.println(Arrays.toString(separateWheatFromChaff(wheatAndChaff2)));
     }
