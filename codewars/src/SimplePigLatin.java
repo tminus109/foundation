@@ -1,29 +1,29 @@
-import java.util.Objects;
-
 public class SimplePigLatin {
-    public static void pigIt(String pig) {
-        String[] pigs = pig.split(" ");
-        StringBuilder pigged = new StringBuilder();
+    public static String pigIt(String latin) {
+        String[] words = latin.split(" ");
+        StringBuilder pigLatin = new StringBuilder();
 
-        for (int i = 0; i < pigs.length; i++) {
-            if (Objects.equals(pigs[i], "!")) {
-                pigged.append(pigs[i]);
+        for (String word : words) {
+            int l = word.length() - 1;
+            char firstChar = word.charAt(0);
+            char lastChar = word.charAt(l);
+
+            pigLatin.append(word, 1, l);
+
+            if (Character.isLetterOrDigit(lastChar)) {
+                pigLatin.append(lastChar).append(firstChar).append("ay");
             } else {
-                pigged.append(pigs[i].substring(1)).append(pigs[i].charAt(0)).append("ay");
-                if (i < pigs.length - 1) {
-                    pigged.append(" ");
-                }
+                pigLatin.append(firstChar).append("ay").append(lastChar);
             }
+
+            pigLatin.append(" ");
         }
 
-        System.out.println(pigged);
+        return pigLatin.toString().trim();
     }
 
     public static void main(String[] args) {
-        String pig1 = "Pig latin is cool";
-        String pig2 = "Hello world !";
-
-        pigIt(pig1);
-        pigIt(pig2);
+        System.out.println(pigIt("Pig latin is cool."));
+        System.out.println(pigIt("Hello world!"));
     }
 }
