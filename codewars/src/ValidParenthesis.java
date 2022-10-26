@@ -1,12 +1,13 @@
 public class ValidParenthesis {
     public static boolean isParenthesisValid(String s) {
-        if (!s.contains("(") || !s.contains(")") || s.charAt(0) == ')') {
+        if (!s.contains("(") || !s.contains(")")) {
             return false;
         }
 
+        int length = s.length();
         int count = 0;
 
-        for (int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < length; i++) {
             if (s.charAt(i) == '(') {
                 count++;
             } else if (s.charAt(i) == ')') {
@@ -21,14 +22,14 @@ public class ValidParenthesis {
     }
 
     public static void main(String[] args) {
-        String s1 = "()";
-        String s2 = ")(()))";
+        String s = "()";
+        String s2 = ")(((()))";
         String s3 = "(";
         String s4 = "(())((()())())";
         String s5 = "(()()(()())()";
         String s6 = "()))((";
 
-        System.out.println(isParenthesisValid(s1));
+        System.out.println(isParenthesisValid(s));
         System.out.println(isParenthesisValid(s2));
         System.out.println(isParenthesisValid(s3));
         System.out.println(isParenthesisValid(s4));
