@@ -1,38 +1,27 @@
 public class SubarrayDivision {
-    public static int birthday(int[] chocolate, int birthday, int birthMonth) {
-        int output = 0;
-        for (int i = 0; i < chocolate.length - (birthMonth - 1); i++) {
-            int temp = 0;
-            for (int j = i; j < (i + birthMonth); j++) {
-                temp += chocolate[j];
+    public static int findSegments(int[] chocolate, int d, int m) {
+        int count = 0;
+        int l = chocolate.length - m + 1;
+
+        for (int i = 0; i < l; i++) {
+            int segment = 0;
+            for (int j = i; j < (i + m); j++) {
+                segment += chocolate[j];
             }
-            if (temp == birthday) {
-                output++;
+            if (segment == d) {
+                count++;
             }
         }
-        return output;
+
+        return count;
     }
 
     public static void main(String[] args) {
-        int[] chocolate0 = {1, 2, 1, 3, 2};
-        int birthday0 = 3;
-        int birthMonth0 = 2;
-
-        int[] chocolate1 = {1, 1, 1, 1, 1};
-        int birthday1 = 3;
-        int birthMonth1 = 2;
-
-        int[] chocolate2 = {4};
-        int birthday2 = 4;
-        int birthMonth2 = 1;
-
-        int[] s = {2, 2, 1, 3, 2};
-        int d = 4;
-        int m = 2;
-
-        System.out.println(birthday(chocolate0, birthday0, birthMonth0));
-        System.out.println(birthday(chocolate1, birthday1, birthMonth1));
-        System.out.println(birthday(chocolate2, birthday2, birthMonth2));
-        System.out.println(birthday(s, d, m));
+        System.out.println(findSegments(new int[]{2, 2, 1, 3, 2}, 4, 2));
+        System.out.println(findSegments(new int[]{1, 2, 1, 3, 2}, 3, 2));
+        System.out.println(findSegments(new int[]{1, 1, 1, 1, 1, 1}, 3, 2));
+        System.out.println(findSegments(new int[]{4}, 4, 1));
+        System.out.println(findSegments(new int[]{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}, 24, 12));
+        System.out.println(findSegments(new int[]{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}, 2, 1));
     }
 }
