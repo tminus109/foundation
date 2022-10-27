@@ -16,17 +16,22 @@ to make her password strong?
 Note: Here's the set of types of characters in a form you can paste in your solution:
 
 numbers = "0123456789"
+
 lower_case = "abcdefghijklmnopqrstuvwxyz"
+
 upper_case = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
 special_characters = "!@#$%^&*()-+"
 
 Examples:
 
 password = "2bbbb"
+
 This password is 5 characters long and is missing an uppercase and a special character.
 The minimum number of characters to add is 2.
 
 password = "2bb#A"
+
 This password is 5 characters long and has at least one of each character type.
 The minimum number of characters to add is 1.
 
@@ -39,26 +44,23 @@ string password: the password to test.
 Returns int: the minimum number of characters to add.
 
 Input Format:
+
 The first line contains an integer n, the length of the password.
 The second line contains the password string.
 Each character is either a lowercase/uppercase English alphabet, a digit, or a special character.
 
 Constraints:
+
 1 <= n <= 100
+
 All characters in password are in [a-z], [A-Z], [0-9], or [!@#$%^&*()-+ ].
 
-Sample Input 0:
-3
-Ab1
+Sample Input: 3, "Ab1"
 
-Sample Output 0:
-3
+Sample Output: 3
 
-Sample Input 1:
-11
-#HackerRank
+Sample Input: 11, "#HackerRank"
 
-Sample Output 1:
-1
+Sample Output: 1
 
 https://www.hackerrank.com/challenges/strong-password/problem
