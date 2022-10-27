@@ -1,33 +1,23 @@
 public class MiniMaxSum {
-    public static void miniMaxSum(int[] input) {
-        long minimumSum = Long.MAX_VALUE;
-        long maximumSum = Long.MIN_VALUE;
-        int index = 0;
+    public static void findMinAndMaxSum(int[] arr) {
+        long sum = 0;
+        long smallestNum = arr[0];
+        long biggestNum = arr[0];
 
-        for (int i = 0; i < input.length; i++) {
-            long temp = 0;
-            for (int j = 0; j < input.length; j++) {
-                if (j != index) {
-                    temp += input[j];
-                }
+        for (long n : arr) {
+            if (n < smallestNum) {
+                smallestNum = n;
+            } else if (n > biggestNum) {
+                biggestNum = n;
             }
-            if (temp < minimumSum) {
-                minimumSum = temp;
-            }
-            if (temp > maximumSum) {
-                maximumSum = temp;
-            }
-            index++;
+            sum += n;
         }
 
-        System.out.println(minimumSum + " " + maximumSum);
+        System.out.println("min. sum = " + (sum - biggestNum) + " | max. sum = " + (sum - smallestNum));
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[]{1, 2, 3, 4, 5};
-        int[] arr2 = new int[]{1, 3, 5, 7, 9};
-
-        miniMaxSum(arr);
-        miniMaxSum(arr2);
+        findMinAndMaxSum(new int[]{1, 2, 3, 4, 5});
+        findMinAndMaxSum(new int[]{1, 3, 5, 7, 9});
     }
 }
