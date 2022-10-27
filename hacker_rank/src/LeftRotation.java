@@ -1,32 +1,23 @@
 import java.util.Arrays;
 
 public class LeftRotation {
-    public static int[] rotLeft(int[] a, int d) {
-        for (int i = 0; i < d; i++) {
-            int temp = a[0];
-            for (int j = 0; j < a.length - 1; j++) {
-                a[j] = a[j + 1];
-            }
-            a[a.length - 1] = temp;
-        }
-        return a;
-    }
+    public static int[] rotLeft(int n, int[] arr) {
+        int l = arr.length - 1;
 
-    public static int[] rotLeft2(int[] a, int d) {
-        for (int i = 0; i < d; i++) {
-            int temp = a[0];
-            System.arraycopy(a, 1, a, 0, a.length - 1);
-            a[a.length - 1] = temp;
+        for (int i = 0; i < n; i++) {
+            int temp = arr[0];
+            System.arraycopy(arr, 1, arr, 0, l);
+            arr[l] = temp;
         }
-        return a;
+
+        return arr;
     }
 
     public static void main(String[] args) {
-        int[] a = new int[]{1, 2, 3, 4, 5};
-        int[] b = {1, 2, 3, 4, 5};
-        int d = 4;
-
-        System.out.println(Arrays.toString(rotLeft2(b, d)));
-        System.out.println(Arrays.toString(rotLeft(a, d)));
+        System.out.println(Arrays.toString(rotLeft(1, new int[]{1, 2, 3, 4, 5})));
+        System.out.println(Arrays.toString(rotLeft(2, new int[]{1, 2, 3, 4, 5})));
+        System.out.println(Arrays.toString(rotLeft(3, new int[]{1, 2, 3, 4, 5})));
+        System.out.println(Arrays.toString(rotLeft(4, new int[]{1, 2, 3, 4, 5})));
+        System.out.println(Arrays.toString(rotLeft(5, new int[]{1, 2, 3, 4, 5})));
     }
 }

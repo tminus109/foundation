@@ -11,26 +11,28 @@ Return the updated array to be printed as a single line of space-separated integ
 Function Description: Complete the function rotLeft.
 
 rotLeft has the following parameter(s):
+
 int a[n]: the array to rotate;
+
 int d: the number of rotations.
 
-Returns: int a'[n]: the rotated array.
+Returns: int a[n]: the rotated array.
 
 Input Format:
-The first line contains two space-separated integers n and d, the size of a
-and the number of left rotations.
-The second line contains n space-separated integers, each an a[i].
+
+The first line contains integer n, the number of left rotations.
+The second line contains n integers, each an a[i].
 
 Constraints:
+
 1 <= n <= 10⁵
+
 1 <= d <= n
+
 1 <= a[i] <= 10⁶
 
-Sample Input:
-5 4
-1 2 3 4 5
+Sample Input: [1, 2, 3, 4, 5], 4
 
-Sample Output:
-5 1 2 3 4
+Sample Output: [5, 1, 2, 3, 4]
 
 https://www.hackerrank.com/challenges/ctci-array-left-rotation/problem
