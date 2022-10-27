@@ -43,16 +43,9 @@ Constraints:
 Output Format:
 
 Print the following 3 lines, each to 6 decimals:
+proportion of positive values, proportion of negative values, proportion of zeros.
 
-1. proportion of positive values
-2. proportion of negative values
-3. proportion of zeros
-
-Sample Input:
-
-n = 6
-
-arr = [-4, 3, -9, 0, 4, 1]
+Sample Input: arr = [-4, 3, -9, 0, 4, 1]
 
 Sample Output:
 
