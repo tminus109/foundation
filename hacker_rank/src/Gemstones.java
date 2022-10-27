@@ -1,28 +1,28 @@
 public class Gemstones {
-    public static int gemstones(String[] rocks) {
-        int gemstones = 0;
+    public static int findGems(String[] rocks) {
+        int gemCount = 0;
+        int length = rocks.length;
+        String firstRock = rocks[0];
+        int l = firstRock.length();
 
-        for (char ch = 'a'; ch <= 'z'; ch++) {
-            int count = 0;
+        for (int i = 0; i < l; i++) {
+            int occCount = 0;
             for (String rock : rocks) {
-                if (rock.contains(String.valueOf(ch))) {
-                    count++;
+                if (rock.contains(Character.toString(firstRock.charAt(i)))) {
+                    occCount++;
                 }
             }
-            if (count == rocks.length) {
-                gemstones++;
+            if (occCount == length) {
+                gemCount++;
             }
         }
 
-        return gemstones;
+        return gemCount;
     }
 
 
     public static void main(String[] args) {
-        String[] rocks0 = {"abc", "abc", "bc"};
-        String[] rocks1 = {"abcdde", "baccd", "eeabg"};
-
-        System.out.println(gemstones(rocks0));
-        System.out.println(gemstones(rocks1));
+        System.out.println(findGems(new String[]{"abc", "abc", "bc"}));
+        System.out.println(findGems(new String[]{"abcdde", "baccd", "eeabg"}));
     }
 }
