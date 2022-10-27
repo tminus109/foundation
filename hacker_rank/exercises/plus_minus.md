@@ -13,7 +13,8 @@ Example:
 arr = [1, 1, 0, -1, -1]
 
 There are n = 5 elements, two positive, two negative and one zero.
-Their ratios are 0.400000, 0.400000 and 0.200000. Results are printed as:
+Their ratios are 0.400000, 0.400000 and 0.200000.
+Results are printed as:
 
 0.400000
 
