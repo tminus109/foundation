@@ -21,10 +21,10 @@ The magazine has all the right words, but there is a case mismatch. The answer i
 Function Description: Complete the checkMagazine function.
 It must print "Yes" if the note can be formed using the magazine, or "No".
 
-checkMagazine has the following parameters: tring magazine[m]: the words in the magazine,
+checkMagazine has the following parameters: string magazine[m]: the words in the magazine,
 string note[n]: the words in the ransom note.
 
-Prints string: either "Yes" or "No", no return value is expected.
+Prints string: either "Yes" or "No"; no return value is expected.
 
 Input Format:
 
