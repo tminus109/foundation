@@ -12,35 +12,38 @@ determine the minimum number of character deletions required to make a and b ana
 Any characters can be deleted from either of the strings.
 
 Example:
+
 a = "cde"
+
 b = "dcf"
+
 Delete e from a and f from b so that the remaining strings are cd and dc which are anagrams.
 This takes 2 character deletions.
 
 Function Description: Complete the makeAnagram function.
 
 makeAnagram has the following parameter(s):
+
 string a: a string,
+
 string b: another string.
 
 Returns int: the minimum total characters that must be deleted.
 
-Input Format:
-The first line contains a single string, a,
-the second line contains a single string, b.
+Input Format: The first line contains a single string, a, the second line contains a single string, b.
 
 Constraints:
+
 1 <= |a|, |b| <= 10⁴
+
 The strings a and b consist of lowercase English alphabetic letters, ascii[a-z].
 
-Sample Input:
-cde
-abc
+Sample Input: cde abc
 
-Sample Output:
-4
+Sample Output: 4
 
 Explanation:
+
 Delete the following characters from the strings to make them anagrams:
 Remove d and e from cde to get c.
 Remove a and b from abc to get c.

@@ -4,39 +4,32 @@ import java.util.List;
 import java.util.Map;
 
 public class MakingAnagrams {
-    public static int makeAnagram(String a, String b) {
-        Map<Character, Integer> charCount = new HashMap<>();
+    public static int makeAnagrams(String a, String b) {
+        int deletionCount = 0;
+        Map<Character, Integer> chars = new HashMap<>();
 
         for (char key : a.toCharArray()) {
-            int value = charCount.containsKey(key) ? charCount.get(key) : 0;
-            charCount.put(key, (value + 1));
+            int value = chars.getOrDefault(key, 0);
+            chars.put(key, (value + 1));
         }
 
         for (char key : b.toCharArray()) {
-            int value = charCount.containsKey(key) ? charCount.get(key) : 0;
-            charCount.put(key, (value - 1));
+            int value = chars.getOrDefault(key, 0);
+            chars.put(key, (value - 1));
         }
 
-        List<Integer> values = new ArrayList<>(charCount.values());
-        int totalCharsDeleted = 0;
+        List<Integer> values = new ArrayList<>(chars.values());
 
         for (Integer value : values) {
-            totalCharsDeleted += Math.abs(value);
+            deletionCount += Math.abs(value);
         }
 
-        return totalCharsDeleted;
+        return deletionCount;
     }
 
     public static void main(String[] args) {
-        String a = "cde";
-        String b = "abc";
-        String a2 = "bacdc";
-        String b2 = "dcbac";
-        String a3 = "bacdc";
-        String b3 = "dcbad";
-
-        System.out.println(makeAnagram(a, b));
-        System.out.println(makeAnagram(a2, b2));
-        System.out.println(makeAnagram(a3, b3));
+        System.out.println(makeAnagrams("cde", "abc"));
+        System.out.println(makeAnagrams("bacdc", "dcbac"));
+        System.out.println(makeAnagrams("bacdc", "dcbad"));
     }
 }
