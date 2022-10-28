@@ -1,5 +1,5 @@
 public class SuperReducedString {
-    public static String superReducedString(String s) {
+    public static String reduceString(String s) {
         StringBuilder sb = new StringBuilder(s);
 
         for (int i = 1; i < sb.length(); i++) {
@@ -17,16 +17,10 @@ public class SuperReducedString {
     }
 
     public static void main(String[] args) {
-        String s0 = "aaabccddd";
-        String s1 = "aa";
-        String s2 = "baab";
-        String s3 = "aab";
-        String s4 = "abba";
-
-        System.out.println(superReducedString(s0));
-        System.out.println(superReducedString(s1));
-        System.out.println(superReducedString(s2));
-        System.out.println(superReducedString(s3));
-        System.out.println(superReducedString(s4));
+        System.out.println(reduceString("ffcaaabccddd"));
+        System.out.println(reduceString("aa"));
+        System.out.println(reduceString("baab"));
+        System.out.println(reduceString("aab"));
+        System.out.println(reduceString("abba"));
     }
 }

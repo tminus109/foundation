@@ -5,40 +5,36 @@ Delete as many characters as possible using this method and return the resulting
 If the final string is empty, return "Empty String".
 
 Examples:
+
 s = "aab"
-aab shortens to b in one operation: remove the adjacent a characters.
+
+"aab" shortens to "b" in one operation: remove the adjacent "a" character.
 
 s = "abba"
-Remove the two 'b' characters leaving 'aa'. Remove the two 'a' characters to leave ''.
-Return 'Empty String'.
+
+Remove the two "b" characters leaving "aa". Remove the two "a" characters to leave "".
+Return "Empty String".
 
 Function Description: complete the superReducedString function.
 
 superReducedString has the following parameter(s): string s, a string to reduce.
 
-Returns string: the reduced string or Empty String.
+Returns string: the reduced string or "Empty String".
 
 Input Format: A single string, s.
 
-Constraints:
-1 <= length of s <= 100
+Constraints: 1 <= length of s <= 100
 
-Sample Input 0:
-aaabccddd
+Sample Input: "aaabccddd"
 
-Sample Output 0:
-abd
+Sample Output: "abd"
 
-Sample Input 1:
-aa
+Sample Input: "aa"
 
-Sample Output 1:
-Empty String
+Sample Output: "Empty String"
 
-Sample Input 2:
-baab
+Sample Input: "baab"
 
-Sample Output 2:
-Empty String
+Sample Output: "Empty String"
 
 https://www.hackerrank.com/challenges/reduced-string/problem
