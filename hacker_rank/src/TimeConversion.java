@@ -4,26 +4,24 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TimeConversion {
-    public static String timeConversion(String s) {
+    public static String convertTime(String s) {
         String militaryTime = "";
+
         try {
-            DateFormat input = new SimpleDateFormat("hh:mm:ssa");
-            DateFormat output = new SimpleDateFormat("HH:mm:ss");
-            Date inputTime = input.parse(s);
-            militaryTime = output.format(inputTime);
+            DateFormat standardTimeFormat = new SimpleDateFormat("hh:mm:ssa");
+            Date standardTime = standardTimeFormat.parse(s);
+            DateFormat militaryTimeFormat = new SimpleDateFormat("HH:mm:ss");
+            militaryTime = militaryTimeFormat.format(standardTime);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
         return militaryTime;
     }
 
     public static void main(String[] args) throws ParseException {
-        String s0 = "12:01:00PM";
-        String s1 = "12:01:00AM";
-        String s2 = "07:05:45PM";
-
-        System.out.println(timeConversion(s0));
-        System.out.println(timeConversion(s1));
-        System.out.println(timeConversion(s2));
+        System.out.println(convertTime("12:01:00PM"));
+        System.out.println(convertTime("12:01:00AM"));
+        System.out.println(convertTime("07:05:45PM"));
     }
 }
