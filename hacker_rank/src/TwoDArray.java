@@ -1,28 +1,28 @@
 public class TwoDArray {
-    public static int hourglassSum(int[][] input) {
-        int maxHourglassSum = Integer.MIN_VALUE;
-        int length = input.length - 2;
+    public static int countHighestHourglassSum(int[][] arr) {
+        int sum = Integer.MIN_VALUE;
+        int l = arr.length - 2;
 
-        for (int i = 0; i < length; i++) {
-            for (int j = 0; j < length; j++) {
-                int temp = input[i][j] +
-                        input[i][j + 1] +
-                        input[i][j + 2] +
-                        input[i + 1][j + 1] +
-                        input[i + 2][j] +
-                        input[i + 2][j + 1] +
-                        input[i + 2][j + 2];
-                if (temp > maxHourglassSum) {
-                    maxHourglassSum = temp;
+        for (int i = 0; i < l; i++) {
+            for (int j = 0; j < l; j++) {
+                int tempSum = arr[i][j] +
+                        arr[i][j + 1] +
+                        arr[i][j + 2] +
+                        arr[i + 1][j + 1] +
+                        arr[i + 2][j] +
+                        arr[i + 2][j + 1] +
+                        arr[i + 2][j + 2];
+                if (tempSum > sum) {
+                    sum = tempSum;
                 }
             }
         }
 
-        return maxHourglassSum;
+        return sum;
     }
 
     public static void main(String[] args) {
-        int[][] input1 = new int[][]{
+        int[][] input = new int[][]{
                 {-9, -9, -9, 1, 1, 1},
                 {0, -9, 0, 4, 3, 2},
                 {-9, -9, -9, 1, 2, 3},
@@ -40,7 +40,7 @@ public class TwoDArray {
                 {0, 0, 1, 2, 4, 0}
         };
 
-        System.out.println(hourglassSum(input1));
-        System.out.println(hourglassSum(input2));
+        System.out.println(countHighestHourglassSum(input));
+        System.out.println(countHighestHourglassSum(input2));
     }
 }
