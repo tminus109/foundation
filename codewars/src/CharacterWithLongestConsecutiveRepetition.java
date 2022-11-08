@@ -22,6 +22,8 @@ public class CharacterWithLongestConsecutiveRepetition {
             for (int j = (i + 1); j < length; j++) {
                 if (s.charAt(j) == ch) {
                     count++;
+                } else {
+                    break;
                 }
             }
 
@@ -43,5 +45,7 @@ public class CharacterWithLongestConsecutiveRepetition {
         System.out.println(findChar("abcabab"));
         System.out.println(findChar("babcaba"));
         System.out.println(findChar(""));
+        System.out.println(findChar("aaaabb"));
+        System.out.println(findChar("bbbaaabaaaa"));
     }
 }
