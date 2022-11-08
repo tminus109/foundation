@@ -1,15 +1,11 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 public class CharacterWithLongestConsecutiveRepetition {
-    public static List<Object> findChar(String s) {
-        List<Object> output = new ArrayList<>();
+    public static Object[] findChar(String s) {
         int length = s.length();
 
         if (length == 0) {
-            output.add("\"\"");
-            output.add(0);
-            return output;
+            return new Object[]{"", 0};
         }
 
         char c = s.charAt(0);
@@ -33,19 +29,16 @@ public class CharacterWithLongestConsecutiveRepetition {
             }
         }
 
-        output.add(c);
-        output.add(l);
-
-        return output;
+        return new Object[]{String.valueOf(c), l};
     }
 
     public static void main(String[] args) {
-        System.out.println(findChar("alallaamdgg"));
-        System.out.println(findChar("abcaba"));
-        System.out.println(findChar("abcabab"));
-        System.out.println(findChar("babcaba"));
-        System.out.println(findChar(""));
-        System.out.println(findChar("aaaabb"));
-        System.out.println(findChar("bbbaaabaaaa"));
+        System.out.println(Arrays.toString(findChar("alallaamdgg")));
+        System.out.println(Arrays.toString(findChar("abcaba")));
+        System.out.println(Arrays.toString(findChar("abcabab")));
+        System.out.println(Arrays.toString(findChar("babcaba")));
+        System.out.println(Arrays.toString(findChar("")));
+        System.out.println(Arrays.toString(findChar("aaaabb")));
+        System.out.println(Arrays.toString(findChar("bbbaaabaaaa")));
     }
 }
