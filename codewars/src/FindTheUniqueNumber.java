@@ -1,35 +1,35 @@
-import java.util.HashMap;
-import java.util.Map;
-
 public class FindTheUniqueNumber {
-    public static double findUniqueNumber(double[] arr) {
-        double uniqueNumber = -1.;
-        Map<Double, Integer> numberCount = new HashMap<>();
-
-        for (double key : arr) {
-            if (!numberCount.containsKey(key)) {
-                numberCount.put(key, 1);
-            } else {
-                int count = numberCount.get(key) + 1;
-                numberCount.put(key, count);
+    public static double findUniq(double[] numbers) {
+        for (double n : numbers) {
+            int count = 0;
+            for (double number : numbers) {
+                if (n == number) {
+                    count++;
+                }
+            }
+            if (count == 1) {
+                return n;
             }
         }
 
-        for (Map.Entry<Double, Integer> entry : numberCount.entrySet()) {
-            if (entry.getValue() == 1) {
-                uniqueNumber = entry.getKey();
-                break;
-            }
-        }
-
-        return uniqueNumber;
+        return 0;
     }
 
     public static void main(String[] args) {
-        double[] arr0 = {1, 1, 1, 2, 1, 1};
+        double[] arr = {1, 1, 1, 2, 1, 1};
         double[] arr1 = {0, 0, 0.55, 0, 0};
+        double[] arr2 = {1, 1, 1, 1, 1, 3};
+        double[] arr3 = {1, 8, 4, 4, 6, 1, 8};
+        double[] arr4 = {1, 4, 4, 5, 5, 3, 3, 2, 2};
+        double[] arr5 = {2, 2, 5, 5, 4, 3, 3, 1, 1};
+        double[] arr6 = {3, 5, 5, 4, 4, 3, 2, 2, 9};
 
-        System.out.println(findUniqueNumber(arr0));
-        System.out.println(findUniqueNumber(arr1));
+        System.out.println(findUniq(arr));
+        System.out.println(findUniq(arr1));
+        System.out.println(findUniq(arr2));
+        System.out.println(findUniq(arr3));
+        System.out.println(findUniq(arr4));
+        System.out.println(findUniq(arr5));
+        System.out.println(findUniq(arr6));
     }
 }
