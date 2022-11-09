@@ -1,11 +1,14 @@
 import java.util.HashMap;
 import java.util.Map;
 
+//import java.util.Arrays;
+
 public class FindTheOddInt {
-    public static Object findOddInt(int[] numbers) {
+    public static int findOddInt(int[] a) {
+        int odd = 0;
         Map<Integer, Integer> mappedNumbers = new HashMap<>();
 
-        for (int number : numbers) {
+        for (int number : a) {
             if (!mappedNumbers.containsKey(number)) {
                 mappedNumbers.put(number, 1);
             } else {
@@ -16,11 +19,14 @@ public class FindTheOddInt {
 
         for (Map.Entry<Integer, Integer> entry : mappedNumbers.entrySet()) {
             if (entry.getValue() % 2 != 0) {
-                return entry.getKey();
+                odd = entry.getKey();
+                break;
             }
         }
 
-        return "It's all even.";
+        return odd;
+
+//        return Arrays.stream(a).reduce(0, (x, y) -> x ^ y);
     }
 
     public static void main(String[] args) {
@@ -29,8 +35,11 @@ public class FindTheOddInt {
         int[] numbers3 = {1, 1, 2};
         int[] numbers4 = {0, 1, 0, 1, 0};
         int[] numbers5 = {1, 2, 2, 3, 3, 3, 4, 3, 3, 3, 2, 2, 1};
-        int[] numbers6 = {7, 7};
-
+        int[] numbers6 = {20, 1, -1, 2, -2, 3, 3, 5, 5, 1, 2, 4, 20, 4, -1, -2, 5};
+        int[] numbers7 = {1, 1, 2, -2, 5, 2, 4, 4, -1, -2, 5};
+        int[] numbers8 = {20, 1, 1, 2, 2, 3, 3, 5, 5, 4, 20, 4, 5};
+        int[] numbers9 = {1, 1, 1, 1, 1, 1, 10, 1, 1, 1, 1};
+        int[] numbers10 = {5, 4, 3, 2, 1, 5, 4, 3, 2, 10, 10};
 
         System.out.println(findOddInt(numbers1));
         System.out.println(findOddInt(numbers2));
@@ -38,5 +47,9 @@ public class FindTheOddInt {
         System.out.println(findOddInt(numbers4));
         System.out.println(findOddInt(numbers5));
         System.out.println(findOddInt(numbers6));
+        System.out.println(findOddInt(numbers7));
+        System.out.println(findOddInt(numbers8));
+        System.out.println(findOddInt(numbers9));
+        System.out.println(findOddInt(numbers10));
     }
 }
