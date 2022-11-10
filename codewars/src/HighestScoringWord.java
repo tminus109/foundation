@@ -1,31 +1,13 @@
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class HighestScoringWord {
     public static String findHighestScoringWord(String s) {
-        Map<Character, Integer> scoreOfEachWord = new HashMap<>();
-        int scoreOfLetter = 1;
-
-        for (char ch = 'a'; ch <= 'z'; ch++) {
-            scoreOfEachWord.put(ch, scoreOfLetter);
-            scoreOfLetter++;
-        }
-
-        List<String> words = new ArrayList<>(Arrays.asList(s.split(" ")));
-        String highestScoringWord = "";
-        int score = 0;
-
-        for (String word : words) {
-            int tempScore = 0;
-            for (int j = 0; j < word.length(); j++) {
-                tempScore += scoreOfEachWord.get(word.charAt(j));
-            }
-            if (tempScore > score) {
-                score = tempScore;
-                highestScoringWord = word;
-            }
-        }
-
-        return highestScoringWord;
+        return Arrays.stream(s.split(" "))
+                .max(Comparator.comparingInt(a -> a.chars()
+                        .map(i -> i - 96)
+                        .sum()))
+                .orElseThrow();
     }
 
     public static void main(String[] args) {
