@@ -15,7 +15,7 @@ public class StrongPassword {
             count++;
         }
 
-        if (!password.matches(".*[!@#$%^&*()-+].*")) {
+        if (!password.matches(".*[!@#$%^&*()+-].*")) {
             count++;
         }
 
@@ -25,7 +25,7 @@ public class StrongPassword {
     public static void main(String[] args) {
         System.out.println(checkPasswordStrength("Ab1"));
         System.out.println(checkPasswordStrength("#HackerRank"));
-        System.out.println(checkPasswordStrength("2bbbb"));
+        System.out.println(checkPasswordStrength("AUzs-nV"));
         System.out.println(checkPasswordStrength("2bb#A"));
     }
 }
