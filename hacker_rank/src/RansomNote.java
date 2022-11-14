@@ -1,30 +1,27 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class RansomNote {
-    public static void matchWords(String m, String n) {
-        ArrayList<String> wordsOfMagazine = new ArrayList<>(Arrays.asList(m.split(" ")));
-        ArrayList<String> wordsOfNote = new ArrayList<>(Arrays.asList(n.split(" ")));
-        boolean yesOrNo = true;
+    public static void matchWords(String[] magazine, String[] note) {
+        List<String> magazineList = new ArrayList<>(Arrays.asList(magazine));
 
-        for (String s : wordsOfNote) {
-            if (!wordsOfMagazine.contains(s)) {
-                yesOrNo = false;
-                break;
+        for (String s : note) {
+            if (!magazineList.contains(s)) {
+                System.out.println("No");
+                return;
+            } else {
+                magazineList.remove(s);
             }
         }
 
-        if (yesOrNo) {
-            System.out.println("Yes");
-        } else {
-            System.out.println("No");
-        }
+        System.out.println("Yes");
     }
 
     public static void main(String[] args) {
-        matchWords("give me one grand today night", "give one grand today");
-        matchWords("two times three is not four", "two times two is four");
-        matchWords("I've got a lovely bunch of coconuts", "I've got some coconuts");
-        matchWords("attack at dawn", "Attack at dawn");
+        matchWords(new String[]{"give", "me", "one", "grand", "today", "night"}, new String[]{"give", "one", "grand", "today"});
+        matchWords(new String[]{"two", "times", "three", "is", "not", "four"}, new String[]{"two", "times", "three", "is", "not", "four"});
+        matchWords(new String[]{"attack", "at", "dawn"}, new String[]{"Attack", "at", "dawn"});
+        matchWords(new String[]{"two", "times", "three", "is", "not", "four"}, new String[]{"two", "times", "two", "is", "four"});
     }
 }
